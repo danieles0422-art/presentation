@@ -1,0 +1,21 @@
+.by {
+  font-size: 16px;
+  line-height: 1.7;
+  font-weight: 600;
+  color: #a9c4b7;
+}
+
+.by strong {
+  color: #a9c4b7;
+  font-weight: 700;
+}
+
+.by .year {
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: #f5d76e;
+  font-size: 18px;
+  font-weight: 800;
+  margin-top: 2px;
+}
