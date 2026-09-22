@@ -505,7 +505,6 @@ h2{font-size:clamp(1.9rem,3.6vw,2.9rem);line-height:1.06;width:fit-content;max-w
     <button id="stop" class="ctl">■ Detener</button>
     <button id="audio" class="ctl" aria-pressed="true">Audio: sí</button>
     <button id="autob" class="ctl" aria-pressed="false">Auto: no</button>
-    <button id="spd" class="ctl">Velocidad 1×</button>
   </div>
 </aside>
 </div>
@@ -689,11 +688,6 @@ $('audio').onclick=function(){
 $('autob').onclick=function(){
   auto=!auto;this.textContent='Auto: '+(auto?'sí':'no');this.setAttribute('aria-pressed',auto);
   if(auto&&!playing)narrate();
-};
-const RATES=[.8,1,1.25];
-$('spd').onclick=function(){
-  rate=RATES[(RATES.indexOf(rate)+1)%RATES.length];
-  this.textContent='Velocidad '+String(rate).replace('.',',')+'×';
 };
 function setAgent(on){
   document.body.classList.toggle('agent-off',!on);
