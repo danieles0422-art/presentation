@@ -19,3 +19,123 @@
   font-weight: 800;
   margin-top: 2px;
 }
+
+
+/* =========================================
+   ANIMACIÓN DE PESCA
+   ========================================= */
+
+.fishing-animation {
+  cursor: pointer;
+  overflow: visible;
+}
+
+/* Preparación de los elementos SVG */
+.fishing-hook,
+.fishing-line,
+.fishing-string {
+  transform-box: fill-box;
+  transform-origin: center top;
+}
+
+/* Movimiento del sobre / anzuelo */
+.fishing-animation.fishing-active .fishing-hook {
+  animation: fishingBob 1.4s ease-in-out 3;
+}
+
+/* Movimiento de la línea */
+.fishing-animation.fishing-active .fishing-line {
+  animation: fishingLine 1.4s ease-in-out 3;
+}
+
+/* Movimiento de la parte inferior de la cuerda */
+.fishing-animation.fishing-active .fishing-string {
+  animation: fishingString 1.4s ease-in-out 3;
+}
+
+
+/* =========================================
+   MOVIMIENTO DEL SOBRE / ANZUELO
+   ========================================= */
+
+@keyframes fishingBob {
+
+  0% {
+    transform: translateY(0) rotate(-9deg);
+  }
+
+  25% {
+    transform: translateY(-18px) rotate(-7deg);
+  }
+
+  50% {
+    transform: translateY(8px) rotate(-11deg);
+  }
+
+  75% {
+    transform: translateY(-12px) rotate(-8deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(-9deg);
+  }
+
+}
+
+
+/* =========================================
+   MOVIMIENTO DE LA LÍNEA
+   ========================================= */
+
+@keyframes fishingLine {
+
+  0% {
+    transform: scaleY(1);
+  }
+
+  25% {
+    transform: scaleY(0.90);
+  }
+
+  50% {
+    transform: scaleY(1.04);
+  }
+
+  75% {
+    transform: scaleY(0.94);
+  }
+
+  100% {
+    transform: scaleY(1);
+  }
+
+}
+
+
+/* =========================================
+   MOVIMIENTO DE LA CUERDA
+   ========================================= */
+
+@keyframes fishingString {
+
+  0% {
+    transform: translateY(0);
+  }
+
+  25% {
+    transform: translateY(-8px);
+  }
+
+  50% {
+    transform: translateY(4px);
+  }
+
+  75% {
+    transform: translateY(-6px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+
+}

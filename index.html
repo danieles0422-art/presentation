@@ -176,6 +176,8 @@ h2{font-size:clamp(1.9rem,3.6vw,2.9rem);line-height:1.06;width:fit-content;max-w
 .ctl{padding:8px 6px;border:1px solid var(--dk);border-radius:10px;background:var(--btn);color:var(--btnt);font:700 .74rem var(--sans);cursor:pointer}
 .ctl:hover{border-color:var(--g)}
 .ctl[aria-pressed="true"]{background:var(--g);border-color:var(--g);color:#fff}
+.ctl.active{background:var(--g);border-color:var(--g);color:#fff;box-shadow:0 0 0 2px #F4D03F55,0 0 14px #A7D12944}
+#stop.active{background:var(--yellow);border-color:var(--yellow);color:#073c2b;box-shadow:0 0 0 2px #ffffff33,0 0 14px #F4D03F55}
 #play{background:var(--v);border-color:var(--v);color:#fff}
 .open{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:30;width:68px;height:68px;padding:0;border:4px solid #fff;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 50% 30%,#008A3E,#004B2D);box-shadow:0 8px 22px #003b2055;cursor:pointer;display:none}
 .open svg{display:block;width:112px;height:auto;max-height:none;margin:-24px 0 0 -22px}
@@ -238,7 +240,7 @@ h2{font-size:clamp(1.9rem,3.6vw,2.9rem);line-height:1.06;width:fit-content;max-w
 .agent{overflow:visible}
 .agent:before{content:"";position:absolute;inset:0;border-radius:24px;padding:1px;background:linear-gradient(135deg,#A7D12955,#F4D03F33,#008A3E66);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
 .box{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px}
-.box:before{content:"SECURITY GUIDE  ·  UdeC";display:block;margin:2px 0 0;padding:4px 9px;border-radius:999px;border:1px solid #A7D12944;background:#0B3D2E99;color:#A7D129;font-size:.58rem;font-weight:800;letter-spacing:.12em}
+.box:before{content:"Guía de Seguridad  ·  UDEC";display:block;margin:2px 0 0;padding:4px 9px;border-radius:999px;border:1px solid #A7D12944;background:#0B3D2E99;color:#A7D129;font-size:.58rem;font-weight:800;letter-spacing:.12em}
 .box:after{content:"";position:absolute;top:34px;left:50%;width:150px;height:150px;transform:translateX(-50%);border:1px solid #A7D12922;border-radius:50%;box-shadow:0 0 0 12px #A7D1290a,0 0 30px #008A3E22;pointer-events:none}
 .face{position:relative;z-index:1;width:100%;border:0!important;background:radial-gradient(circle at 50% 44%,#1d6646 0%,#123F2D 52%,#0B3D2E 100%)!important;border-radius:18px!important;padding:8px!important;box-shadow:inset 0 0 30px #A7D1290c,0 10px 28px #001c1028}
 .face:before,.face:after{content:"";position:absolute;z-index:2;pointer-events:none}
@@ -342,7 +344,15 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.15;ba
 .plain{padding:42px 48px}.plain h2{font-family:var(--sans);color:var(--deep);font-size:clamp(2rem,3.4vw,3rem);margin-top:7px}.section-kicker{display:inline-flex;background:#e8f2d5;color:#006b3e;border:1px solid #b9d56f;border-radius:20px;padding:6px 13px;font-weight:800;font-size:.72rem;letter-spacing:.05em}.plain .lead{color:#506158}.ideas,.grid3,.dual{margin-top:30px}.idea,.card{background:#fffdf5;border:1px solid #d9dfd0;border-radius:16px;box-shadow:0 8px 20px #1d3f2b0b}.idea{padding:20px;border-top:4px solid var(--green)}.idea b,.card b{color:var(--deep)}.idea p,.card p{color:#53645b}.note-q{color:#365047;background:#f1f5e8;border-radius:14px;padding:14px 18px;border-left:5px solid var(--yellow)}
 .mail{box-shadow:0 10px 30px #173c2b18}.flag{background:#f7faef!important;color:#28473b!important;border-color:#cad7bd!important}.flag.on{background:#e7f3ca!important;border-color:#a7d129!important}.mail .mail-h{background:#edf2e8}.grid3 .card{padding:20px}.card svg{stroke:var(--green)}
 .bar{background:#053b2b!important;border-top:1px solid #1c7652!important;padding:14px 18px!important;color:#fff!important}.bar button{border-radius:22px!important;border:1px solid #4c836c!important;background:#0a4936!important;color:#fff!important;padding:10px 18px!important;font-weight:700!important}.bar button#next{background:var(--yellow)!important;color:#183225!important;border-color:var(--yellow)!important}.bar button:disabled{opacity:.4}.prog{height:8px!important;background:#234d3c!important;border-radius:20px!important}.prog i{background:linear-gradient(90deg,var(--yellow),var(--lime))!important}.module-label{font-weight:700;color:#e8f3ea}.dot{background:#9eb8aa!important}.dot[aria-current="true"]{background:var(--yellow)!important}
-.agent{background:linear-gradient(180deg,#022d23,#063d2d)!important;border:1px solid #18a66c!important;border-radius:20px!important;box-shadow:0 20px 50px #001d1344!important;padding:10px!important;position:sticky!important;top:15px}.agent:before{content:"";position:absolute;inset:9px;border:1px solid #21c27c44;border-radius:17px;pointer-events:none}.box{background:transparent!important;border:0!important;box-shadow:none!important;padding:18px 8px 4px!important}.min{z-index:4;background:#24644c!important}.face{border:2px solid #48f5a4!important;border-radius:25px!important;background:radial-gradient(circle,#0c5e43,#042d24)!important;box-shadow:0 0 0 1px #0b9d66,0 0 25px #35e49b33!important;padding:12px!important}.av{width:100%!important;height:245px!important}.halo{stroke:#48f5a4!important;stroke-opacity:.45!important;fill:#16a56810!important}.name{display:none!important}.agent-heading{display:flex;align-items:center;justify-content:center;gap:10px;color:#fff;margin:4px 0 9px;position:relative;z-index:2}.agent-heading b{display:block;font-size:.85rem;letter-spacing:.02em}.agent-heading strong{display:block;text-align:center;color:#00c875;font-size:.95rem;margin-top:2px}.agent-shield{width:35px;height:40px;display:grid;place-items:center;border:2px solid #7affb7;clip-path:polygon(50% 0,92% 18%,84% 68%,50% 100%,16% 68%,8% 18%);color:#7affb7;font-weight:900}.speech-card{position:relative;margin:8px 8px 10px;padding:16px 14px;border-radius:18px;background:linear-gradient(145deg,#eff7ef,#cfe0d8);color:#193c30;font-size:.8rem;line-height:1.55;box-shadow:inset 0 0 0 1px #ffffffaa}.speech-card:before{content:"";position:absolute;left:14px;bottom:-9px;border:9px solid transparent;border-top-color:#cfe0d8;border-left-width:0}.speech-card.idle{min-height:120px}.ctls{display:grid!important;grid-template-columns:1fr 1fr!important;gap:7px!important;padding:3px 8px 8px!important;position:relative;z-index:2}.ctl{border:1px solid #267a59!important;background:#073e2e!important;color:#fff!important;border-radius:13px!important;padding:10px 7px!important;font-size:.72rem!important}.ctl:first-child{background:linear-gradient(90deg,#0fa95e,#32e98e)!important;color:#05301f!important;border-color:#72ffb7!important;font-weight:900}.ctl:hover{filter:brightness(1.08)}.status-dot{width:10px;height:10px;border-radius:50%;background:#20e989;box-shadow:0 0 12px #20e989;display:inline-block;margin-right:7px}.box.talking .status-dot{animation:pulse 1s infinite}.box.talking .face{box-shadow:0 0 0 2px #5dffae,0 0 32px #36ee9c88!important}.box.talking .agent-heading strong{color:#ffe04e}@keyframes pulse{50%{transform:scale(1.25);opacity:.6}}
+.agent{background:linear-gradient(180deg,#022d23,#063d2d)!important;border:1px solid #18a66c!important;border-radius:20px!important;box-shadow:0 20px 50px #001d1344!important;padding:10px!important;position:sticky!important;top:15px}.agent:before{content:"";position:absolute;inset:9px;border:1px solid #21c27c44;border-radius:17px;pointer-events:none}.box{background:transparent!important;border:0!important;box-shadow:none!important;padding:18px 8px 4px!important}.min{z-index:4;background:#24644c!important}.face{border:2px solid #48f5a4!important;border-radius:25px!important;background:radial-gradient(circle,#0c5e43,#042d24)!important;box-shadow:0 0 0 1px #0b9d66,0 0 25px #35e49b33!important;padding:12px!important}.av{width:100%!important;height:245px!important}.halo{stroke:#48f5a4!important;stroke-opacity:.45!important;fill:#16a56810!important}.name{display:none!important}.agent-heading{display:flex;align-items:center;justify-content:center;gap:10px;color:#fff;margin:4px 0 9px;position:relative;z-index:2}.agent-heading b{display:block;font-size:.85rem;letter-spacing:.02em}.agent-heading strong{display:block;text-align:center;color:#00c875;font-size:.95rem;margin-top:2px}.agent-shield{width:35px;height:40px;display:grid;place-items:center;border:2px solid #7affb7;clip-path:polygon(50% 0,92% 18%,84% 68%,50% 100%,16% 68%,8% 18%);color:#7affb7;font-weight:900}.speech-card{position:relative;margin:8px 8px 10px;padding:16px 14px;border-radius:18px;background:linear-gradient(145deg,#eff7ef,#cfe0d8);color:#193c30;font-size:.8rem;line-height:1.55;box-shadow:inset 0 0 0 1px #ffffffaa}.speech-card:before{content:"";position:absolute;left:14px;bottom:-9px;border:9px solid transparent;border-top-color:#cfe0d8;border-left-width:0}.speech-card.idle{min-height:120px}.ctls{display:grid!important;grid-template-columns:1fr 1fr!important;gap:7px!important;padding:3px 8px 8px!important;position:relative;z-index:2}.ctl{border:1px solid #267a59!important;background:#073e2e!important;color:#fff!important;border-radius:13px!important;padding:10px 7px!important;font-size:.72rem!important}.ctl:first-child{background:linear-gradient(90deg,#0fa95e,#32e98e)!important;color:#05301f!important;border-color:#72ffb7!important;font-weight:900}/* Estado seleccionado de los controles: se resalta la opcion activa sin cambiar la logica existente */
+.ctl[aria-pressed="true"]{background:linear-gradient(90deg,#F4D03F,#FFE66B)!important;color:#183225!important;border-color:#F4D03F!important;box-shadow:0 0 0 2px #F4D03F22,0 0 12px #F4D03F44}
+.ctl[aria-pressed="false"]{background:#073e2e!important;color:#fff!important;border-color:#267a59!important;box-shadow:none}
+.ctl#play{background:linear-gradient(90deg,#0fa95e,#32e98e)!important;color:#05301f!important;border-color:#72ffb7!important}
+.ctl#play.is-playing{background:linear-gradient(90deg,#F4D03F,#FFE66B)!important;color:#183225!important;border-color:#F4D03F!important;box-shadow:0 0 0 2px #F4D03F22,0 0 12px #F4D03F44}
+.agent-heading{position:relative;display:block;text-align:center}
+.agent-heading>div{text-align:center}
+.agent-heading .agent-shield{position:absolute;left:8px;top:50%;transform:translateY(-50%)}
+.ctl:hover{filter:brightness(1.08)}.status-dot{width:10px;height:10px;border-radius:50%;background:#20e989;box-shadow:0 0 12px #20e989;display:inline-block;margin-right:7px}.box.talking .status-dot{animation:pulse 1s infinite}.box.talking .face{box-shadow:0 0 0 2px #5dffae,0 0 32px #36ee9c88!important}.box.talking .agent-heading strong{color:#ffe04e}@keyframes pulse{50%{transform:scale(1.25);opacity:.6}}
 /* navegación lateral sincronizada */
 @media (max-width:1180px){.stage{grid-template-columns:210px minmax(0,1fr) 270px}.head-title{font-size:1.05rem}.head-message{display:none}.side-item b{font-size:.72rem}.side-item small{font-size:.62rem}.av{height:215px!important}}
 @media (max-width:980px){.stage{grid-template-columns:1fr}.sidebar{display:none}.agent{position:relative!important;top:auto;max-width:420px;margin:0 auto}.deck{order:1}.agent{order:2}.head{grid-template-columns:1fr auto}.head-title{border:0;padding:0}.head-brand b{font-size:1.1rem}.slide,.art{min-height:580px}}
@@ -476,6 +486,53 @@ body.agent-off .open{display:block !important;pointer-events:auto}
   box-shadow: inset 0 0 0 1px #4E7C66;
   opacity: 1 !important;
 }
+
+
+/* ===== Animación de pesca ===== */
+.fishing-animation{
+  cursor:pointer;
+  transform-box:fill-box;
+  transform-origin:center;
+  transition:filter .2s ease;
+}
+.fishing-animation:hover{
+  filter:drop-shadow(0 0 6px #F4D03F66);
+}
+.fishing-animation:focus-visible{
+  outline:none;
+  filter:drop-shadow(0 0 8px #F4D03F99);
+}
+.fishing-animation.fishing-active{
+  animation:fishingPull 4.5s cubic-bezier(.45,.05,.55,.95) both;
+}
+@keyframes fishingPull{
+  0%{transform:translateY(0) rotate(0deg)}
+  12%{transform:translateY(12px) rotate(.5deg)}
+  25%{transform:translateY(-34px) rotate(-.8deg)}
+  40%{transform:translateY(-58px) rotate(.6deg)}
+  56%{transform:translateY(18px) rotate(-.5deg)}
+  72%{transform:translateY(38px) rotate(.4deg)}
+  86%{transform:translateY(-10px) rotate(-.2deg)}
+  100%{transform:translateY(0) rotate(0deg)}
+}
+/* La animación de pesca se mantiene activa aunque el navegador tenga
+   activada la preferencia de movimiento reducido, para que la interacción
+   al tocar el anzuelo siga funcionando. */
+@media (prefers-reduced-motion:reduce){
+  .fishing-animation.fishing-active{
+    animation:fishingPull 4.5s cubic-bezier(.45,.05,.55,.95) both !important;
+  }
+}
+
+/* Evita que el foco del elemento SVG dibuje un rectángulo sobre la ilustración. */
+.fishing-animation:focus{
+  outline:none;
+}
+.fishing-animation:focus-visible{
+  outline:2px solid #F4D03F;
+  outline-offset:4px;
+  border-radius:4px;
+}
 </style>
 </head>
 <body>
@@ -490,7 +547,7 @@ body.agent-off .open{display:block !important;pointer-events:auto}
 
 <div class="stage">
 <aside class="sidebar" aria-label="Índice de la capacitación">
-  <div class="side-brand"><span class="side-mark">🛡</span><div><b>Ruta de aprendizaje</b><small>Seguridad digital UdeC</small></div></div>
+  <div class="side-brand"><span class="side-mark">🛡</span><div><b>Ruta de aprendizaje</b><small>Seguridad digital UDEC</small></div></div>
   <nav class="side-nav">
     <button class="side-item active" data-slide="0"><span class="side-icon">⌂</span><span><b>1. Portada</b><small>Introducción</small></span></button>
     <button class="side-item" data-slide="1"><span class="side-icon">▤</span><span><b>2. ¿Qué es el phishing?</b><small>Conceptos básicos</small></span></button>
@@ -503,7 +560,7 @@ body.agent-off .open{display:block !important;pointer-events:auto}
     <button class="side-item" data-slide="8"><span class="side-icon">⌁</span><span><b>9. Práctica</b><small>Pon a prueba tu conocimiento</small></span></button>
     <button class="side-item" data-slide="9"><span class="side-icon">✓</span><span><b>10. Cierre</b><small>Conclusiones</small></span></button>
   </nav>
-  <div class="side-footer"><strong>UdeC</strong><span>Universidad de Cundinamarca</span><em>2026</em></div>
+  <div class="side-footer"><strong>UDEC</strong><span>Universidad de Cundinamarca</span><em>2026</em></div>
 </aside>
 
 <main>
@@ -512,39 +569,109 @@ body.agent-off .open{display:block !important;pointer-events:auto}
 
 <!-- 1. Portada -->
 <article class="slide cover" data-mood="happy">
+
   <div class="copy">
-    <h1 data-read>Phishing: no muerdas el anzuelo</h1>
-    <p class="lead" data-read>Cómo reconocer, evitar y reportar los engaños digitales que buscan tus contraseñas, tu dinero y tu identidad.</p>
-  <p class="by" data-read>
-    <strong>RIASCOS ROMERO DANIEL STIVEN</strong><br>
-    <strong>GARCIA VILLARAGA JUAN FELIPE</strong><br>
-    <strong>CIENCIA TECNOLOGIA E INNOVACIÓN</strong><br>
-    <strong class="year">2026</strong>
-  </p>
-    <button class="go" data-go="1">Empezar</button>
-    <p class="hint">Toca un texto para escucharlo.</p>
+
+    <h1 data-read>
+      Phishing: no muerdas el anzuelo
+    </h1>
+
+    <p class="by" data-read>
+      <strong>RIASCOS ROMERO DANIEL STIVEN</strong><br>
+      <strong>GARCIA VILLARAGA JUAN FELIPE</strong><br>
+      <strong class="year">2026</strong>
+    </p>
+
+    <button class="go" data-go="1">
+      Empezar
+    </button>
+
+    <p class="hint">
+      Toca un texto para escucharlo.
+    </p>
+
   </div>
+
   <div class="art">
-    <h3>Parece real. No lo es.</h3>
+
+    <h3 data-read style="max-width: 350px; margin: 0 auto;">
+      Parece real. No lo es.
+    </h3>
+
     <svg viewBox="0 0 320 430" aria-hidden="true">
-      <g fill="none" stroke="#E8F2E4" stroke-opacity=".22" stroke-width="2" stroke-linecap="round">
+      <g fill="none"
+         stroke="#E8F2E4"
+         stroke-opacity=".22"
+         stroke-width="2"
+         stroke-linecap="round">
+
         <path d="M-10 350q20-12 40 0t40 0 40 0 40 0 40 0 40 0 40 0 40 0"/>
         <path d="M-10 378q20-12 40 0t40 0 40 0 40 0 40 0 40 0 40 0 40 0"/>
         <path d="M-10 406q20-12 40 0t40 0 40 0 40 0 40 0 40 0 40 0 40 0"/>
-        <circle cx="70" cy="300" r="7"/><circle cx="92" cy="272" r="4"/><circle cx="252" cy="318" r="5"/>
+
+        <circle cx="70" cy="300" r="7"/>
+        <circle cx="92" cy="272" r="4"/>
+        <circle cx="252" cy="318" r="5"/>
+
       </g>
-      <path d="M204 0V164" stroke="#F4D03F" stroke-width="2.4"/>
-      <g transform="rotate(-9 168 262)">
-        <rect x="112" y="214" width="112" height="76" rx="7" fill="#F8F9E7"/>
-        <path d="M112 220l56 40 56-40" fill="none" stroke="#b9cdbf" stroke-width="3" stroke-linejoin="round"/>
-        <circle cx="222" cy="216" r="15" fill="#b3341f"/>
-        <text x="222" y="222" text-anchor="middle" font-size="19" font-weight="700" fill="#fff" font-family="Georgia,serif">!</text>
+
+      <g class="fishing-animation" tabindex="0" role="button" aria-label="Ilustración de pesca. Toca para ver el anzuelo subir y bajar.">
+        <path class="fishing-line" d="M204 0V164"
+        stroke="#F4D03F"
+        stroke-width="2.4"/>
+
+        <g class="fishing-hook" transform="rotate(-9 168 262)">
+
+        <rect x="112"
+              y="214"
+              width="112"
+              height="76"
+              rx="7"
+              fill="#F8F9E7"/>
+
+        <path d="M112 220l56 40 56-40"
+              fill="none"
+              stroke="#b9cdbf"
+              stroke-width="3"
+              stroke-linejoin="round"/>
+
+        <circle cx="222"
+                cy="216"
+                r="15"
+                fill="#b3341f"/>
+
+        <text x="222"
+              y="222"
+              text-anchor="middle"
+              font-size="19"
+              font-weight="700"
+              fill="#fff"
+              font-family="Georgia,serif">
+          !
+        </text>
+
       </g>
-      <path d="M204 164V196q0 46-34 46-32 0-32-24" fill="none" stroke="#F4D03F" stroke-width="6" stroke-linecap="round"/>
-      <path d="M138 218l-11-9" stroke="#F4D03F" stroke-width="6" stroke-linecap="round"/>
+
+      <path d="M204 164V196q0 46-34 46-32 0-32-24"
+            fill="none"
+            stroke="#F4D03F"
+            stroke-width="6"
+            stroke-linecap="round"/>
+
+        <path d="M138 218l-11-9"
+              stroke="#F4D03F"
+              stroke-width="6"
+              stroke-linecap="round"/>
+      </g>
+
     </svg>
-    <p>Un mensaje falso puede llegar por correo, SMS, llamada o código QR.</p>
+
+    <p data-read style="max-width: 350px; margin: 0 auto;">
+      Aprende a reconocer, evitar y reportar los engaños digitales que buscan obtener tus contraseñas, tu dinero o tu identidad. Ten en cuenta que un mensaje fraudulento puede llegar por diferentes medios, como correo electrónico, SMS, llamadas telefónicas o incluso códigos QR.
+    </p>
+
   </div>
+
 </article>
 
 <!-- 2. Qué es -->
@@ -764,7 +891,7 @@ body.agent-off .open{display:block !important;pointer-events:auto}
         </g>
       </svg>
     </button>
-    <div class="agent-heading"><span class="agent-shield">✓</span><div><b>GUÍA DE SEGURIDAD DIGITAL</b><strong>UdeC</strong></div></div>
+    <div class="agent-heading"><span class="agent-shield"></span><div><b>Nuestro Avatar</b></div></div>
     <div class="name"><span class="status-dot"></span><span id="state">Listo para ayudarte</span></div>
   </div>
   <div class="speech-card" id="speechCard">¡Hola! Soy tu guía de seguridad digital. Te acompañaré en esta capacitación sobre phishing. Puedes hacer clic en cualquier texto para que lo lea, o usar el botón Narrar para escuchar la diapositiva.</div>
@@ -786,7 +913,7 @@ const $=id=>document.getElementById(id),$$=(s,r=document)=>[...r.querySelectorAl
 const synth=('speechSynthesis' in window&&'SpeechSynthesisUtterance' in window)?window.speechSynthesis:null;
 const slides=$$('#slides>.slide'),N=slides.length,av=$('av'),box=$('box'),capEl=$('say');
 const IDLE='Hola, soy tu guía de seguridad. Pulsa «Narrar» para que te explique esta diapositiva o toca cualquier texto para escucharlo.';
-let n=0,audioOn=true,auto=false,token=0,gen=0,playing=false,queue=[],qix=0,voice=null,lt=null,tmr=null,noteT=null,curU=null,seq=[],pos=0,tickMs=90,anatomyFound=new Set();
+let n=0,audioOn=true,auto=false,stopped=false,token=0,gen=0,playing=false,queue=[],qix=0,voice=null,lt=null,tmr=null,noteT=null,curU=null,seq=[],pos=0,tickMs=90,anatomyFound=new Set();
 
 /* ---------- Voz ---------- */
 function pickVoice(){
@@ -828,11 +955,11 @@ function startTalk(text){
   buildSeq(text);pos=0;
   const dur=text.length/14.5*1000;
   tickMs=Math.max(55,Math.min(140,dur/Math.max(seq.length,1)));
-  box.classList.add('talking');$('state').textContent='Hablando…';
+  box.classList.add('talking');$('play').classList.add('is-playing');$('state').textContent='Hablando…';
   clearTimeout(lt);tick();
 }
 function endTalk(){
-  clearTimeout(lt);av.dataset.v='rest';box.classList.remove('talking');
+  clearTimeout(lt);av.dataset.v='rest';box.classList.remove('talking');$('play').classList.remove('is-playing');
   $('state').textContent='Listo para ayudarte';
   av.style.setProperty('--gx','0px');av.style.setProperty('--gy','0px');
 }
@@ -907,21 +1034,22 @@ function readEl(el,done){
   caption(t);lookAt(el);
   el.scrollIntoView({block:'nearest',behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});
   const fin=()=>{el.classList.remove('reading');done&&done()};
-  if(!audioOn){
+  if(stopped||!audioOn){
     const my=++token;
     tmr=setTimeout(()=>{if(my===token)fin()},Math.min(7000,1400+t.length*38));
     return;
   }
   speak(t,fin);
 }
-function single(el){gen++;playing=false;queue=[];readEl(el)}
-function stopAll(){gen++;playing=false;queue=[];cancelSpeech();clearReading()}
-function narrate(){
-  stopAll();
-  queue=$$('[data-read]',slides[n]).filter(e=>e.offsetParent!==null&&!e.hasAttribute('data-noread')&&!e.isContentEditable);
-  if(!queue.length)return;
-  qix=0;playing=true;step();
+function single(el){
+  // Si el usuario había pulsado Detener, un clic directo sobre un texto
+  // vuelve a habilitar la lectura y cambia el estado visual del control.
+  stopped=false;
+  clearControlActive();
+  $('play')?.classList.add('active');
+  gen++;playing=false;queue=[];readEl(el);
 }
+function stopAll(){gen++;playing=false;queue=[];cancelSpeech();clearReading()}
 function step(){
   if(!playing)return;
   if(qix>=queue.length){playing=false;finished();return}
@@ -951,6 +1079,7 @@ function resetAnatomy(){
 function go(x){
   if(x<0||x>=N)return;
   stopAll();
+  clearControlActive();
   slides.forEach((s,i)=>s.hidden=i!==x);
   n=x;
   $('back').disabled=!n;$('next').disabled=n===N-1;
@@ -973,11 +1102,31 @@ $('dots').onclick=e=>{const d=e.target.closest('.dot');if(d)go(+d.dataset.n)};
 $$('.side-item').forEach(b=>b.addEventListener('click',()=>go(+b.dataset.slide)));
 
 /* ---------- Controles del asistente ---------- */
+function clearControlActive(){
+  $('play')?.classList.remove('active');
+  $('stop')?.classList.remove('active');
+}
+function narrate(){
+  stopped=false;
+  clearControlActive();
+  $('play')?.classList.add('active');
+  stopAll();
+  queue=$$('[data-read]',slides[n]).filter(e=>e.offsetParent!==null&&!e.hasAttribute('data-noread')&&!e.isContentEditable);
+  if(!queue.length){$('play')?.classList.remove('active');return}
+  qix=0;playing=true;step();
+}
 $('play').onclick=narrate;
 $('face').onclick=narrate;
-$('stop').onclick=()=>{stopAll();$('state').textContent='Reproducción detenida'};
+$('stop').onclick=()=>{
+  stopped=true;
+  stopAll();
+  clearControlActive();
+  $('stop')?.classList.add('active');
+  $('state').textContent='Reproducción detenida';
+};
 $('audio').onclick=function(){
   stopAll();audioOn=!audioOn;
+  if(audioOn) stopped=false;
   this.textContent='Audio: '+(audioOn?'sí':'no');this.setAttribute('aria-pressed',audioOn);
   if(!audioOn)note('Audio desactivado: los textos aparecen en el cuadro del asistente');
 };
@@ -1122,5 +1271,23 @@ qb.addEventListener('click',e=>{
 enhance();renderQ();go(0);
 })();
 </script>
+<!-- ANIMACIÓN DE PESCA: al tocar la ilustración, el anzuelo sube y baja. -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const fishingAnimation = document.querySelector(".fishing-animation");
+  if (!fishingAnimation) return;
+
+  fishingAnimation.addEventListener("click", () => {
+    fishingAnimation.classList.remove("fishing-active");
+    void fishingAnimation.offsetWidth;
+    fishingAnimation.classList.add("fishing-active");
+
+    setTimeout(() => {
+      fishingAnimation.classList.remove("fishing-active");
+    }, 4500);
+  });
+});
+</script>
+
 </body>
 </html>
