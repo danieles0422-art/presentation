@@ -492,46 +492,236 @@ body.agent-off .open{display:block !important;pointer-events:auto}
 .fishing-animation{
   cursor:pointer;
   transform-box:fill-box;
-  transform-origin:center;
+  transform-origin:50% 50%;
   transition:filter .2s ease;
+  will-change:transform;
+  pointer-events:all;
 }
 .fishing-animation:hover{
-  filter:drop-shadow(0 0 6px #F4D03F66);
+  filter:drop-shadow(0 0 7px #F4D03F77);
 }
-.fishing-animation:focus-visible{
-  outline:none;
-  filter:drop-shadow(0 0 8px #F4D03F99);
+.fishing-animation:focus,
+.fishing-animation:focus-visible,
+.fishing-animation:active{
+  outline:0 !important;
+  outline-offset:0 !important;
 }
+
+/* La ilustración se activa con clic, por lo que no mostramos
+   ningún rectángulo de enfoque del navegador alrededor del SVG. */
+.fishing-animation{
+  -webkit-tap-highlight-color:transparent;
+}
+/* Movimiento visible del conjunto: el sobre sube y baja como si tirara del anzuelo. */
 .fishing-animation.fishing-active{
-  animation:fishingPull 4.5s cubic-bezier(.45,.05,.55,.95) both;
+  animation:fishingPull 4.5s ease-in-out both;
 }
 @keyframes fishingPull{
-  0%{transform:translateY(0) rotate(0deg)}
-  12%{transform:translateY(12px) rotate(.5deg)}
-  25%{transform:translateY(-34px) rotate(-.8deg)}
-  40%{transform:translateY(-58px) rotate(.6deg)}
-  56%{transform:translateY(18px) rotate(-.5deg)}
-  72%{transform:translateY(38px) rotate(.4deg)}
-  86%{transform:translateY(-10px) rotate(-.2deg)}
-  100%{transform:translateY(0) rotate(0deg)}
+  0%{transform:translate(0,0) rotate(0deg)}
+  12%{transform:translate(0,10px) rotate(.4deg)}
+  27%{transform:translate(0,-30px) rotate(-.7deg)}
+  42%{transform:translate(0,-58px) rotate(.7deg)}
+  57%{transform:translate(0,18px) rotate(-.5deg)}
+  72%{transform:translate(0,38px) rotate(.5deg)}
+  87%{transform:translate(0,-12px) rotate(-.2deg)}
+  100%{transform:translate(0,0) rotate(0deg)}
 }
-/* La animación de pesca se mantiene activa aunque el navegador tenga
-   activada la preferencia de movimiento reducido, para que la interacción
-   al tocar el anzuelo siga funcionando. */
 @media (prefers-reduced-motion:reduce){
-  .fishing-animation.fishing-active{
-    animation:fishingPull 4.5s cubic-bezier(.45,.05,.55,.95) both !important;
+  .fishing-animation.fishing-active{animation:fishingPull 4.5s ease-in-out both!important}
+}
+</style>
+<style>
+
+/* =========================================================
+   AJUSTE ESTRUCTURAL FINAL · ALTURA UNIFICADA
+   ---------------------------------------------------------
+   Este bloque se añade al final para no alterar los estilos
+   anteriores. En escritorio, sidebar, presentación y avatar
+   comparten exactamente la misma altura exterior.
+
+   La barra inferior queda dentro del deck y el área de
+   diapositivas ocupa solamente el espacio restante.
+   ========================================================= */
+@media (min-width: 981px) {
+  :root {
+    --platform-height: 760px;
+  }
+
+  .stage {
+    align-items: stretch !important;
+  }
+
+  /* Columna central: misma altura que los laterales */
+  .stage > .presentation-main {
+    height: var(--platform-height) !important;
+    min-height: var(--platform-height) !important;
+    max-height: var(--platform-height) !important;
+    min-width: 0 !important;
+    align-self: stretch !important;
+  }
+
+  /* Menú lateral */
+  .stage > .sidebar {
+    height: var(--platform-height) !important;
+    min-height: var(--platform-height) !important;
+    max-height: var(--platform-height) !important;
+    align-self: stretch !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Presentación: la altura pertenece al contenedor, no a cada slide */
+  .stage > .presentation-main > .deck {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Área visible de las diapositivas */
+  .stage > .presentation-main #slides {
+    width: 100% !important;
+    flex: 1 1 auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    position: relative !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Todas las diapositivas comparten exactamente el mismo viewport */
+  .stage > .presentation-main #slides > .slide {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    box-sizing: border-box !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
+
+  /* La portada tampoco puede imponer sus 690px originales */
+  .stage > .presentation-main #slides > .slide.cover {
+    height: 100% !important;
+    min-height: 0 !important;
+    max-height: none !important;
+  }
+
+  /* El panel verde se adapta al alto real de la portada */
+  .stage > .presentation-main #slides > .slide.cover > .art {
+    height: 100% !important;
+    min-height: 0 !important;
+    max-height: none !important;
+  }
+
+  /* Barra inferior: no modifica la altura total */
+  .stage > .presentation-main .bar {
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Avatar: misma altura exterior */
+  .stage > .agent {
+    height: var(--platform-height) !important;
+    min-height: var(--platform-height) !important;
+    max-height: var(--platform-height) !important;
+    align-self: stretch !important;
+    position: sticky !important;
+    top: 15px !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  /* Si el avatar está oculto, conserva la columna y la altura */
+  body.agent-off .stage > .agent {
+    height: var(--platform-height) !important;
+    min-height: var(--platform-height) !important;
+    max-height: var(--platform-height) !important;
   }
 }
 
-/* Evita que el foco del elemento SVG dibuje un rectángulo sobre la ilustración. */
-.fishing-animation:focus{
-  outline:none;
+/* Tablet: vuelve a comportamiento flexible */
+@media (max-width: 980px) {
+  .stage > .presentation-main {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+  }
+
+  .stage > .presentation-main > .deck {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    display: block !important;
+  }
+
+  .stage > .presentation-main #slides {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .stage > .presentation-main #slides > .slide {
+    height: auto !important;
+    min-height: 580px !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .stage > .presentation-main #slides > .slide.cover > .art {
+    height: auto !important;
+    min-height: 580px !important;
+    max-height: none !important;
+  }
+
+  .stage > .agent {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+  }
 }
-.fishing-animation:focus-visible{
-  outline:2px solid #F4D03F;
-  outline-offset:4px;
-  border-radius:4px;
+
+/* Celular: contenido completamente flexible */
+@media (max-width: 640px) {
+  .stage > .presentation-main {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+  }
+
+  .stage > .presentation-main > .deck {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+  }
+
+  .stage > .presentation-main #slides {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .stage > .presentation-main #slides > .slide,
+  .stage > .presentation-main #slides > .slide.cover {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .stage > .presentation-main #slides > .slide.cover > .art {
+    height: auto !important;
+    min-height: 300px !important;
+    max-height: none !important;
+  }
 }
 </style>
 </head>
@@ -563,7 +753,7 @@ body.agent-off .open{display:block !important;pointer-events:auto}
   <div class="side-footer"><strong>UDEC</strong><span>Universidad de Cundinamarca</span><em>2026</em></div>
 </aside>
 
-<main>
+<main class="presentation-main">
 <section class="deck" aria-label="Presentación sobre phishing">
 <div id="slides">
 
@@ -615,7 +805,7 @@ body.agent-off .open{display:block !important;pointer-events:auto}
 
       </g>
 
-      <g class="fishing-animation" tabindex="0" role="button" aria-label="Ilustración de pesca. Toca para ver el anzuelo subir y bajar.">
+      <g class="fishing-animation" aria-label="Ilustración de pesca. Toca para ver el anzuelo subir y bajar.">
         <path class="fishing-line" d="M204 0V164"
         stroke="#F4D03F"
         stroke-width="2.4"/>
@@ -1277,14 +1467,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const fishingAnimation = document.querySelector(".fishing-animation");
   if (!fishingAnimation) return;
 
-  fishingAnimation.addEventListener("click", () => {
+  const playFishing = () => {
     fishingAnimation.classList.remove("fishing-active");
-    void fishingAnimation.offsetWidth;
+    void fishingAnimation.getBoundingClientRect();
     fishingAnimation.classList.add("fishing-active");
+  };
 
-    setTimeout(() => {
+  fishingAnimation.addEventListener("click", playFishing);
+  fishingAnimation.addEventListener("animationend", (event) => {
+    if (event.animationName === "fishingPull") {
       fishingAnimation.classList.remove("fishing-active");
-    }, 4500);
+    }
   });
 });
 </script>

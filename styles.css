@@ -1,141 +1,3815 @@
-.by {
-  font-size: 16px;
-  line-height: 1.7;
-  font-weight: 600;
-  color: #a9c4b7;
+root{
+  --v:#004B2D;
+  --g:#008A3E;
+  --m:#DDE8B5;
+  --o:#F4D03F;
+  --bg:#0B3D2E;
+  --sf:#123F2D;
+  --sf2:#174C34;
+  --ink:#F8F9E7;
+  --ink2:#D8E5D9;
+  --mut:#B8CDBA;
+  --line:#35634B;
+  --dk:#4E8062;
+  --hl:#214D35;
+  --hd:#F4D03F;
+  --btn:#174C34;
+  --btnt:#F8F9E7;
+  --r:#b3341f;
+  --rs:#fbeae5;
+  --ok:#A7D129;
+  --serif:"Newsreader",Georgia,serif;
+  --sans:"Public Sans",Arial,sans-serif;
+
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
 }
 
-.by strong {
-  color: #a9c4b7;
-  font-weight: 700;
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0B3D2E;
+    --sf:#123F2D;
+    --sf2:#174C34;
+    --ink:#F8F9E7;
+    --ink2:#D8E5D9;
+    --mut:#B8CDBA;
+    --line:#35634B;
+    --dk:#4E8062;
+    --hl:#214D35;
+    --hd:#F4D03F;
+    --btn:#174C34;
+    --btnt:#F8F9E7;
+    --r:#ff9a82;
+    --rs:#3b1f1a;
+    --ok:#A7D129
+  }
 }
 
-.by .year {
-  display: block;
-  width: 100%;
-  text-align: center;
-  color: #f5d76e;
-  font-size: 18px;
-  font-weight: 800;
-  margin-top: 2px;
+:root[data-theme="dark"]{
+  --bg:#0B3D2E;
+  --sf:#123F2D;
+  --sf2:#174C34;
+  --ink:#F8F9E7;
+  --ink2:#D8E5D9;
+  --mut:#B8CDBA;
+  --line:#35634B;
+  --dk:#4E8062;
+  --hl:#214D35;
+  --hd:#F4D03F;
+  --btn:#174C34;
+  --btnt:#F8F9E7;
+  --r:#ff9a82;
+  --rs:#3b1f1a;
+  --ok:#A7D129
+}
+
+html{
+  scroll-padding-top:env(safe-area-inset-top,0px)
+}
+
+*{
+  box-sizing:border-box
+}
+
+body{
+  margin:0;
+  background:#0B3D2E;
+  color:var(--ink);
+  font:16px/1.5 var(--sans)
+}
+
+button{
+  font-family:inherit
+}
+
+:focus-visible{
+  outline:3px solid var(--o);
+  outline-offset:3px
 }
 
 
-/* =========================================
+/* =========================================================
+   ENCABEZADO
+   ========================================================= */
+
+.head{
+  height:66px;
+  margin:0 20px;
+  padding:8px 20px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  color:#fff;
+  background:linear-gradient(100deg,#004B2D,#008A3E);
+  border-radius:0 0 18px 18px
+}
+
+.logo{
+  width:52px;
+  height:52px;
+  flex:none;
+  object-fit:contain
+}
+
+.head b{
+  border-left:1px solid #ffffff66;
+  padding-left:14px;
+  font:700 1.15rem/1.15 var(--serif)
+}
+
+.head small{
+  display:block;
+  font:400 .78rem var(--sans);
+  color:#d8eddb
+}
+
+
+/* =========================================================
+   ESCENARIO PRINCIPAL
+   ========================================================= */
+
+.stage{
+  max-width:1380px;
+  margin:0 auto;
+  padding:32px 20px 40px;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 250px;
+  gap:26px;
+  align-items:start
+}
+
+.agent-off .stage{
+  grid-template-columns:minmax(0,1fr);
+  max-width:1160px
+}
+
+.deck{
+  width:100%;
+  max-width:1100px;
+  margin:0 auto;
+  overflow:hidden;
+  border:8px solid var(--dk);
+  border-radius:24px;
+  background:var(--sf);
+  box-shadow:0 20px 55px #06391f22
+}
+
+.slide{
+  min-height:540px;
+  animation:in .35s
+}
+
+.slide.cover{
+  display:grid;
+  grid-template-columns:1.15fr .85fr
+}
+
+.slide[hidden]{
+  display:none
+}
+
+.plain{
+  padding:clamp(26px,4.5vw,52px)
+}
+
+.copy{
+  padding:clamp(28px,5vw,64px);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:flex-start
+}
+
+
+/* =========================================================
+   TIPOGRAFÍA
+   ========================================================= */
+
+h1,h2,h3{
+  font-family:var(--serif);
+  font-weight:700;
+  color:var(--hd);
+  margin:0
+}
+
+h1{
+  font-size:clamp(2.5rem,5.2vw,4.4rem);
+  line-height:1;
+  letter-spacing:-.01em;
+  width:fit-content;
+  max-width:100%
+}
+
+h2{
+  font-size:clamp(1.9rem,3.6vw,2.9rem);
+  line-height:1.06;
+  width:fit-content;
+  max-width:100%
+}
+
+.lead{
+  margin:16px 0 0;
+  max-width:62ch;
+  font-size:1.1rem;
+  line-height:1.55;
+  color:var(--ink2)
+}
+
+.by{
+  margin:22px 0 24px;
+  color:var(--mut);
+  font-size:.95rem
+}
+
+.hint{
+  margin:18px 0 0;
+  font-size:.8rem;
+  color:var(--mut)
+}
+
+.go{
+  margin-top:6px;
+  border:0;
+  border-radius:24px;
+  padding:12px 26px;
+  background:var(--o);
+  color:#3a2a00;
+  font:700 1rem var(--sans);
+  cursor:pointer
+}
+
+.go:hover{
+  filter:brightness(1.07)
+}
+
+
+/* =========================================================
+   ELEMENTOS QUE EL AVATAR PUEDE LEER
+   ========================================================= */
+
+[data-read]{
+  cursor:pointer;
+  border-radius:8px;
+  transition:box-shadow .15s,background-color .15s
+}
+
+[data-read]:hover{
+  box-shadow:0 0 0 2px var(--m)
+}
+
+[contenteditable="true"]{
+  cursor:text;
+  outline:2px dashed var(--g);
+  outline-offset:3px;
+  background:var(--sf2)
+}
+
+
+/* =========================================================
+   PANEL VERDE CON ILUSTRACIÓN
+   ========================================================= */
+
+.art{
+  position:relative;
+  overflow:hidden;
+  padding:36px 30px;
+  background:linear-gradient(145deg,#008A3E,#004B2D);
+  color:#fff;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  gap:12px
+}
+
+.art h3{
+  max-width:230px;
+  font:700 clamp(1.5rem,2.5vw,2.15rem)/1.06 var(--serif);
+  color:#F4D03F
+}
+
+.art p{
+  margin:0;
+  max-width:230px;
+  font-size:.82rem;
+  color:#E8F2E4
+}
+
+.art svg{
+  width:100%;
+  max-height:330px;
+  flex:1;
+  min-height:0
+}
+
+
+/* =========================================================
+   2. IDEAS
+   ========================================================= */
+
+.ideas{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:24px;
+  margin-top:32px
+}
+
+.idea{
+  padding:16px 8px 12px;
+  border-top:4px solid var(--g)
+}
+
+.idea.i2{
+  border-top-color:var(--o)
+}
+
+.idea.i3{
+  border-top-color:#A7D129
+}
+
+.idea b{
+  display:block;
+  margin-bottom:8px;
+  font:700 1.35rem/1.1 var(--serif);
+  color:var(--hd)
+}
+
+.idea p{
+  margin:0;
+  color:var(--ink2);
+  line-height:1.5
+}
+
+.note-q{
+  margin:30px 0 0;
+  padding:6px 0 6px 16px;
+  border-left:4px solid var(--o);
+  font:italic 500 1.12rem/1.45 var(--serif);
+  color:var(--ink2);
+  max-width:60ch
+}
+
+
+/* =========================================================
+   3. CANALES
+   ========================================================= */
+
+.grid3{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+  margin-top:26px
+}
+
+.card{
+  padding:18px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:var(--sf2)
+}
+
+.card svg{
+  width:32px;
+  height:32px;
+  fill:none;
+  stroke:var(--ok);
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round
+}
+
+.card b{
+  display:block;
+  margin:10px 0 6px;
+  font:700 1.18rem/1.15 var(--serif);
+  color:var(--hd)
+}
+
+.card p{
+  margin:0;
+  color:var(--ink2);
+  font-size:.92rem;
+  line-height:1.5
+}
+
+
+/* =========================================================
+   4. ANATOMÍA DEL CORREO
+   ========================================================= */
+
+.dual{
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
+  gap:28px;
+  margin-top:22px;
+  align-items:start
+}
+
+.mail{
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:#fff;
+  color:#1d2b22;
+  font-size:.86rem;
+  box-shadow:0 8px 24px #06391f14;
+  overflow:hidden
+}
+
+.mail-h{
+  padding:10px 16px;
+  background:#f3f5f3;
+  border-bottom:1px solid #e1e6e2
+}
+
+.mail-row{
+  display:grid;
+  grid-template-columns:52px minmax(0,1fr);
+  gap:8px;
+  padding:4px 0;
+  align-items:baseline
+}
+
+.mail-row>span:first-child{
+  color:#6b7a70
+}
+
+.mail-b{
+  padding:14px 16px 8px
+}
+
+.mail-b p{
+  margin:0 0 11px;
+  line-height:1.55
+}
+
+.flag{
+  cursor:pointer;
+  border-radius:4px;
+  background:#fdecea;
+  box-shadow:0 0 0 2px #f5c4bb;
+  padding:0 3px;
+  overflow-wrap:anywhere
+}
+
+.flag i{
+  display:inline-grid;
+  place-items:center;
+  width:18px;
+  height:18px;
+  margin-left:6px;
+  border-radius:50%;
+  background:#b3341f;
+  color:#fff;
+  font:700 .7rem var(--sans);
+  font-style:normal;
+  vertical-align:1px
+}
+
+.flag.on{
+  background:#f9d3cc;
+  box-shadow:0 0 0 3px #b3341f
+}
+
+.fake-btn{
+  display:inline-block;
+  padding:8px 16px;
+  border-radius:6px;
+  background:#1a5fb4;
+  color:#fff;
+  font-weight:600
+}
+
+.real{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:4px;
+  background:#22282a;
+  color:#d7e3d9;
+  font:.74rem ui-monospace,Menlo,Consolas,monospace;
+  overflow-wrap:anywhere
+}
+
+.flags{
+  display:grid;
+  gap:2px;
+  counter-reset:f
+}
+
+.fl{
+  display:grid;
+  grid-template-columns:28px minmax(0,1fr);
+  gap:12px;
+  padding:9px 10px
+}
+
+.fl:before{
+  counter-increment:f;
+  content:counter(f);
+  width:26px;
+  height:26px;
+  margin-top:2px;
+  border-radius:50%;
+  background:#b3341f;
+  color:#fff;
+  font:700 .85rem var(--sans);
+  display:grid;
+  place-items:center
+}
+
+.fl b{
+  display:block;
+  font:700 1.05rem/1.2 var(--serif);
+  color:var(--r)
+}
+
+.fl p{
+  margin:2px 0 0;
+  font-size:.87rem;
+  line-height:1.42;
+  color:var(--ink2)
+}
+
+
+/* =========================================================
+   5. EMOCIONES
+   ========================================================= */
+
+.rows{
+  margin-top:22px;
+  border-top:1px solid var(--line)
+}
+
+.row{
+  display:grid;
+  grid-template-columns:140px minmax(0,1.3fr) minmax(0,1fr);
+  gap:18px;
+  align-items:baseline;
+  padding:15px 8px;
+  border-bottom:1px solid var(--line);
+  border-radius:0
+}
+
+.row b{
+  font:700 1.4rem/1.1 var(--serif);
+  color:var(--hd)
+}
+
+.row q{
+  quotes:none;
+  font:italic 500 1.15rem/1.35 var(--serif);
+  color:var(--r)
+}
+
+.row p{
+  margin:0;
+  font-size:.92rem;
+  line-height:1.45;
+  color:var(--ink2)
+}
+
+.rule{
+  margin:22px 0 0;
+  padding:14px 18px;
+  border-radius:12px;
+  background:var(--hl);
+  font-weight:600;
+  color:var(--ink)
+}
+
+
+/* =========================================================
+   6. PASOS
+   ========================================================= */
+
+.steps{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:0 14px;
+  counter-reset:s;
+  margin-top:38px
+}
+
+.step{
+  counter-increment:s;
+  position:relative;
+  padding:54px 10px 12px
+}
+
+.step:before{
+  content:counter(s);
+  position:absolute;
+  top:0;
+  left:10px;
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  background:var(--g);
+  color:#fff;
+  font:700 1.15rem var(--serif);
+  display:grid;
+  place-items:center;
+  z-index:1
+}
+
+.step:after{
+  content:"";
+  position:absolute;
+  top:19px;
+  left:54px;
+  right:-14px;
+  height:2px;
+  background:var(--m)
+}
+
+.step:last-child:after{
+  display:none
+}
+
+.step b{
+  display:block;
+  margin-bottom:6px;
+  font:700 1.2rem/1.15 var(--serif);
+  color:var(--hd)
+}
+
+.step p{
+  margin:0;
+  font-size:.9rem;
+  line-height:1.5;
+  color:var(--ink2)
+}
+
+
+/* =========================================================
+   7. PROTECCIÓN
+   ========================================================= */
+
+.checks{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:0 40px;
+  margin-top:22px
+}
+
+.chk{
+  display:grid;
+  grid-template-columns:28px minmax(0,1fr);
+  gap:12px;
+  padding:13px 8px;
+  border-bottom:1px solid var(--line);
+  border-radius:0
+}
+
+.chk:before{
+  content:"";
+  width:26px;
+  height:26px;
+  margin-top:2px;
+  border-radius:50%;
+  background:var(--g) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M2.5 7.5l3 3 6-7' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat
+}
+
+.chk b{
+  display:block;
+  font:700 1.15rem/1.15 var(--serif);
+  color:var(--hd)
+}
+
+.chk p{
+  margin:3px 0 0;
+  font-size:.9rem;
+  line-height:1.45;
+  color:var(--ink2)
+}
+
+
+/* =========================================================
+   8. LÍNEA DE TIEMPO
+   ========================================================= */
+
+.split{
+  display:grid;
+  grid-template-columns:minmax(0,1.5fr) minmax(0,.9fr);
+  gap:32px;
+  margin-top:20px;
+  align-items:start
+}
+
+.tl{
+  margin:0;
+  padding-left:26px;
+  border-left:3px solid var(--m)
+}
+
+.tl-i{
+  position:relative;
+  padding:8px 10px 14px
+}
+
+.tl-i:before{
+  content:"";
+  position:absolute;
+  left:-38px;
+  top:14px;
+  width:16px;
+  height:16px;
+  border-radius:50%;
+  background:var(--o);
+  border:3px solid var(--sf)
+}
+
+.tl-i b{
+  display:block;
+  font:700 1.15rem/1.15 var(--serif);
+  color:var(--hd)
+}
+
+.tl-i p{
+  margin:3px 0 0;
+  font-size:.9rem;
+  line-height:1.5;
+  color:var(--ink2)
+}
+
+.pull{
+  padding:26px 24px;
+  border-radius:18px;
+  background:linear-gradient(145deg,#008A3E,#004B2D);
+  color:#fff;
+  font:italic 500 1.35rem/1.35 var(--serif)
+}
+
+.pull:hover{
+  box-shadow:0 0 0 3px var(--o)
+}
+
+
+/* =========================================================
+   9. PRÁCTICA
+   ========================================================= */
+
+.qtop{
+  display:flex;
+  justify-content:space-between;
+  max-width:720px;
+  margin:20px 0 10px;
+  color:var(--mut);
+  font-size:.85rem
+}
+
+.msg{
+  max-width:720px;
+  padding:16px 18px;
+  border:1px solid var(--line);
+  border-left:5px solid var(--o);
+  border-radius:12px;
+  background:var(--sf2)
+}
+
+.mh{
+  display:flex;
+  flex-wrap:wrap;
+  gap:4px 12px;
+  align-items:baseline;
+  margin-bottom:8px
+}
+
+.mh b{
+  font:700 1.1rem var(--serif);
+  color:var(--hd)
+}
+
+.mh span{
+  color:var(--mut);
+  font-size:.85rem;
+  overflow-wrap:anywhere
+}
+
+.msg p{
+  margin:0;
+  font-size:1.02rem;
+  line-height:1.55
+}
+
+.qr{
+  display:block;
+  width:84px;
+  height:84px;
+  margin-top:12px;
+  border:5px solid #fff;
+  border-radius:4px
+}
+
+.ans{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  max-width:720px;
+  margin-top:16px
+}
+
+.ans button{
+  flex:1 1 200px;
+  max-width:280px;
+  padding:13px 18px;
+  border-radius:12px;
+  background:var(--sf);
+  font:700 1rem var(--sans);
+  border:2px solid;
+  cursor:pointer
+}
+
+.a-p{
+  border-color:var(--r);
+  color:var(--r)
+}
+
+.a-l{
+  border-color:var(--ok);
+  color:var(--ok)
+}
+
+.ans button:disabled{
+  opacity:.5;
+  cursor:default
+}
+
+.ans button.pick{
+  opacity:1;
+  background:var(--hl)
+}
+
+.fb{
+  max-width:720px;
+  margin-top:16px;
+  padding:14px 18px;
+  border-radius:12px;
+  background:var(--hl)
+}
+
+.fb.bad{
+  background:var(--rs)
+}
+
+.fb b{
+  font:700 1.15rem var(--serif);
+  color:var(--ok)
+}
+
+.fb.bad b{
+  color:var(--r)
+}
+
+.fb p{
+  margin:4px 0 12px;
+  line-height:1.5
+}
+
+.nx{
+  border:0;
+  border-radius:18px;
+  padding:8px 18px;
+  background:var(--v);
+  color:#fff;
+  font:700 .9rem var(--sans);
+  cursor:pointer
+}
+
+.res{
+  max-width:720px;
+  margin-top:20px;
+  padding:22px;
+  border-radius:14px;
+  background:var(--hl)
+}
+
+.res h3{
+  font-size:2rem
+}
+
+.res p{
+  margin:8px 0 0;
+  line-height:1.55
+}
+
+
+/* =========================================================
+   10. CIERRE
+   ========================================================= */
+
+.sum{
+  margin:22px 0 4px;
+  display:grid;
+  gap:4px;
+  width:100%;
+  max-width:520px
+}
+
+.sum>div{
+  padding:12px 10px;
+  border-bottom:1px solid var(--line);
+  border-radius:0
+}
+
+.sum b{
+  display:block;
+  font:700 1.35rem/1.1 var(--serif);
+  color:var(--hd)
+}
+
+.sum span{
+  color:var(--ink2);
+  font-size:.95rem
+}
+
+.contact{
+  margin:18px 0 0;
+  padding:12px 14px;
+  max-width:520px;
+  border-radius:10px;
+  background:var(--hl);
+  font-size:.92rem
+}
+
+
+/* =========================================================
+   BARRA DE NAVEGACIÓN
+   ========================================================= */
+
+.bar{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  gap:18px;
+  align-items:center;
+  padding:13px 24px;
+  border-top:1px solid var(--line);
+  background:var(--sf)
+}
+
+.bar button{
+  border:1px solid var(--dk);
+  border-radius:18px;
+  padding:7px 14px;
+  background:var(--btn);
+  color:var(--btnt);
+  font:700 .9rem var(--sans);
+  cursor:pointer
+}
+
+.bar button:disabled{
+  opacity:.4;
+  cursor:default
+}
+
+.prog{
+  height:5px;
+  border-radius:5px;
+  background:var(--line)
+}
+
+.prog i{
+  display:block;
+  width:10%;
+  height:100%;
+  border-radius:5px;
+  background:var(--g);
+  transition:width .3s
+}
+
+.right{
+  display:flex;
+  align-items:center;
+  gap:12px
+}
+
+#count{
+  font-size:.85rem;
+  color:var(--mut);
+  white-space:nowrap
+}
+
+.dots{
+  display:flex;
+  gap:6px
+}
+
+.bar .dot{
+  width:9px;
+  height:9px;
+  padding:0;
+  border:0;
+  border-radius:50%;
+  background:#A7D129
+}
+
+.bar .dot[aria-current="true"]{
+  width:22px;
+  background:var(--g)
+}
+
+
+/* =========================================================
+   ASISTENTE / AVATAR
+   ========================================================= */
+
+.agent{
+  position:sticky;
+  top:16px;
+  display:flex;
+  flex-direction:column;
+  gap:10px
+}
+
+.say{
+  min-height:76px;
+  max-height:150px;
+  overflow:auto;
+  padding:11px 14px;
+  border:1px solid var(--line);
+  border-left:4px solid var(--o);
+  border-radius:14px 14px 14px 3px;
+  background:var(--sf);
+  color:var(--ink);
+  font-size:.83rem;
+  line-height:1.45;
+  box-shadow:0 6px 18px #002b1714
+}
+
+.say.idle{
+  color:var(--mut)
+}
+
+.box{
+  position:relative;
+  overflow:hidden;
+  padding:6px 10px 10px;
+  border-radius:22px;
+  background:radial-gradient(circle at 50% 30%,#008A3E,#004B2D 70%);
+  box-shadow:0 14px 34px #003b2040
+}
+
+.face{
+  display:block;
+  width:100%;
+  padding:0;
+  border:0;
+  background:none;
+  cursor:pointer
+}
+
+.name{
+  margin-top:2px;
+  text-align:center;
+  color:#eaf6ec
+}
+
+.name b{
+  display:block;
+  font:700 1rem var(--serif);
+  color:#F4D03F
+}
+
+.name span{
+  font-size:.72rem;
+  opacity:.85
+}
+
+.min{
+  position:absolute;
+  right:8px;
+  top:8px;
+  z-index:2;
+  width:28px;
+  height:28px;
+  border:0;
+  border-radius:50%;
+  background:#ffffff26;
+  color:#fff;
+  font-size:18px;
+  line-height:1;
+  cursor:pointer
+}
+
+.ctls{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:6px
+}
+
+.ctl{
+  padding:8px 6px;
+  border:1px solid var(--dk);
+  border-radius:10px;
+  background:var(--btn);
+  color:var(--btnt);
+  font:700 .74rem var(--sans);
+  cursor:pointer
+}
+
+.ctl:hover{
+  border-color:var(--g)
+}
+
+.ctl[aria-pressed="true"]{
+  background:var(--g);
+  border-color:var(--g);
+  color:#fff
+}
+
+#play{
+  background:var(--v);
+  border-color:var(--v);
+  color:#fff
+}
+
+.open{
+  position:fixed;
+  right:18px;
+  bottom:calc(18px + env(safe-area-inset-bottom,0px));
+  z-index:30;
+  width:68px;
+  height:68px;
+  padding:0;
+  border:4px solid #fff;
+  border-radius:50%;
+  overflow:hidden;
+  background:radial-gradient(circle at 50% 30%,#008A3E,#004B2D);
+  box-shadow:0 8px 22px #003b2055;
+  cursor:pointer;
+  display:none
+}
+
+.open svg{
+  display:block;
+  width:112px;
+  height:auto;
+  max-height:none;
+  margin:-24px 0 0 -22px
+}
+
+.agent-off .agent{
+  display:none
+}
+
+.agent-off .open{
+  display:block
+}
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:20px;
+  z-index:40;
+  transform:translate(-50%,140%);
+  max-width:90vw;
+  padding:9px 14px;
+  border-radius:8px;
+  background:#173b28;
+  color:#fff;
+  font-size:.85rem;
+  transition:transform .2s
+}
+
+.toast.on{
+  transform:translate(-50%,0)
+}
+
+
+/* =========================================================
+   AVATAR ANIMADO
+   ========================================================= */
+
+.av{
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:min(260px,34vh);
+  margin:0 auto;
+  --gx:0px;
+  --gy:0px;
+  --lift:0px
+}
+
+.iris{
+  transform:translate(var(--gx),var(--gy));
+  transition:transform .3s ease
+}
+
+.lid{
+  transform-box:fill-box;
+  transform-origin:50% 0;
+  transform:scaleY(.05);
+  opacity:0;
+  transition:transform .07s,opacity .07s
+}
+
+.blink .lid{
+  transform:scaleY(1);
+  opacity:1
+}
+
+.brow{
+  transform-box:fill-box;
+  transform-origin:center;
+  transform:translateY(calc(var(--by,0px) + var(--lift,0px))) rotate(var(--rot,0deg));
+  transition:transform .2s
+}
+
+.bl{
+  --rot:var(--rotl,0deg)
+}
+
+.br{
+  --rot:var(--rotr,0deg)
+}
+
+.av[data-mood="happy"]{
+  --by:-1.5px
+}
+
+.av[data-mood="alert"]{
+  --by:-2px;
+  --rotl:-11deg;
+  --rotr:11deg
+}
+
+.head-g{
+  transform-origin:100px 176px;
+  animation:sway 6s ease-in-out infinite alternate
+}
+
+.talking .head-g{
+  animation:talk .9s ease-in-out infinite alternate
+}
+
+.body-g{
+  transform-origin:100px 214px;
+  animation:breathe 4s ease-in-out infinite alternate
+}
+
+.talking .halo{
+  animation:pulse 1.2s ease-in-out infinite alternate
+}
+
+.m{
+  display:none
+}
+
+.av[data-v="rest"][data-mood="neutral"] .m-rn,
+.av[data-v="rest"][data-mood="happy"] .m-rh,
+.av[data-v="rest"][data-mood="alert"] .m-ra,
+.av[data-v="A"] .m-A,
+.av[data-v="E"] .m-E,
+.av[data-v="I"] .m-I,
+.av[data-v="O"] .m-O,
+.av[data-v="U"] .m-U,
+.av[data-v="M"] .m-M,
+.av[data-v="F"] .m-F{
+  display:inline
+}
+
+
+/* =========================================================
+   ANIMACIONES DEL AVATAR
+   ========================================================= */
+
+@keyframes in{
+  from{
+    opacity:0;
+    transform:translateX(14px)
+  }
+}
+
+@keyframes sway{
+  from{
+    transform:rotate(-1deg)
+  }
+  to{
+    transform:rotate(1.2deg) translateY(-1.5px)
+  }
+}
+
+@keyframes talk{
+  from{
+    transform:rotate(-1.4deg)
+  }
+  to{
+    transform:rotate(1.6deg) translateY(-2.5px)
+  }
+}
+
+@keyframes breathe{
+  to{
+    transform:scale(1.008)
+  }
+}
+
+@keyframes pulse{
+  to{
+    stroke-opacity:.9;
+    fill-opacity:.12
+  }
+}
+
+
+/* =========================================================
+   PANTALLAS MEDIANAS Y MÓVILES
+   ========================================================= */
+
+@media (max-width:1099px){
+
+  .stage{
+    display:block;
+    padding:18px 12px 28px
+  }
+
+  body:not(.agent-off) .stage{
+    padding-bottom:230px
+  }
+
+  .agent{
+    position:fixed;
+    left:8px;
+    right:8px;
+    bottom:calc(8px + env(safe-area-inset-bottom,0px));
+    top:auto;
+    z-index:30;
+    display:grid;
+    grid-template-columns:112px minmax(0,1fr);
+    grid-template-areas:
+      "box say"
+      "box ctls";
+    gap:8px;
+    padding:8px;
+    border:1px solid var(--line);
+    border-radius:20px;
+    background:var(--sf);
+    box-shadow:0 -8px 30px #002b1730
+  }
+
+  .box{
+    grid-area:box;
+    padding:0 2px 6px
+  }
+
+  .say{
+    grid-area:say;
+    min-height:0;
+    max-height:76px;
+    padding:8px 10px;
+    font-size:.78rem
+  }
+
+  .ctls{
+    grid-area:ctls;
+    grid-template-columns:repeat(3,1fr);
+    gap:5px
+  }
+
+  .ctl{
+    padding:6px 2px;
+    font-size:.66rem
+  }
+
+  .name{
+    display:none
+  }
+
+  .av{
+    max-height:none
+  }
+}
+
+@media (max-width:820px){
+
+  .head{
+    margin:0 8px
+  }
+
+  .slide.cover{
+    grid-template-columns:1fr
+  }
+
+  .art{
+    min-height:230px
+  }
+
+  .ideas,
+  .grid3,
+  .checks{
+    grid-template-columns:1fr
+  }
+
+  .dual,
+  .split{
+    grid-template-columns:1fr
+  }
+
+  .row{
+    grid-template-columns:1fr;
+    gap:4px
+  }
+
+  .step:after{
+    display:none
+  }
+
+  .bar{
+    grid-template-columns:auto 1fr;
+    padding:12px 14px
+  }
+
+  .prog{
+    grid-column:1/-1;
+    grid-row:2
+  }
+
+  .dots{
+    display:none
+  }
+
+  .deck{
+    border-width:5px;
+    border-radius:18px
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{
+    animation:none!important;
+    transition:none!important
+  }
+}
+
+
+/* =========================================================
+   AVATAR V2 · GUÍA DE SEGURIDAD DIGITAL
+   ========================================================= */
+
+.agent{
+  overflow:visible
+}
+
+.agent:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:24px;
+  padding:1px;
+  background:linear-gradient(
+    135deg,
+    #A7D12955,
+    #F4D03F33,
+    #008A3E66
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  pointer-events:none
+}
+
+.box{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px
+}
+
+.box:before{
+  content:"SECURITY GUIDE  ·  UdeC";
+  display:block;
+  margin:2px 0 0;
+  padding:4px 9px;
+  border-radius:999px;
+  border:1px solid #A7D12944;
+  background:#0B3D2E99;
+  color:#A7D129;
+  font-size:.58rem;
+  font-weight:800;
+  letter-spacing:.12em
+}
+
+.box:after{
+  content:"";
+  position:absolute;
+  top:34px;
+  left:50%;
+  width:150px;
+  height:150px;
+  transform:translateX(-50%);
+  border:1px solid #A7D12922;
+  border-radius:50%;
+  box-shadow:
+    0 0 0 12px #A7D1290a,
+    0 0 30px #008A3E22;
+  pointer-events:none
+}
+
+.face{
+  position:relative;
+  z-index:1;
+  width:100%;
+  border:0!important;
+  background:
+    radial-gradient(
+      circle at 50% 44%,
+      #1d6646 0%,
+      #123F2D 52%,
+      #0B3D2E 100%
+    )!important;
+  border-radius:18px!important;
+  padding:8px!important;
+  box-shadow:
+    inset 0 0 30px #A7D1290c,
+    0 10px 28px #001c1028
+}
+
+.face:before,
+.face:after{
+  content:"";
+  position:absolute;
+  z-index:2;
+  pointer-events:none
+}
+
+.face:before{
+  inset:8px;
+  border:1px solid #A7D12922;
+  border-radius:14px
+}
+
+.face:after{
+  right:12px;
+  top:12px;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#A7D129;
+  box-shadow:
+    0 0 0 4px #A7D12916,
+    0 0 12px #A7D12999
+}
+
+.av{
+  filter:drop-shadow(0 8px 12px #001c1038);
+  transform:translateY(1px) scale(1.03)
+}
+
+.talking .face:after{
+  background:#F4D03F;
+  box-shadow:
+    0 0 0 4px #F4D03F16,
+    0 0 15px #F4D03Fbb;
+  animation:statusPulse 1s ease-in-out infinite alternate
+}
+
+.talking .halo{
+  stroke:#F4D03F!important;
+  stroke-opacity:.9!important
+}
+
+.name{
+  position:relative;
+  z-index:2;
+  width:100%;
+  padding:8px 10px 7px;
+  border:1px solid #A7D12922;
+  border-radius:12px;
+  background:#0B3D2Eaa;
+  text-align:center
+}
+
+.name b{
+  display:block;
+  color:#F4D03F;
+  font:700 1rem/1.1 var(--serif);
+  letter-spacing:.01em
+}
+
+.name span{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  margin-top:4px;
+  color:var(--mut);
+  font-size:.68rem
+}
+
+.name span:before{
+  content:"";
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#A7D129;
+  box-shadow:0 0 8px #A7D12988
+}
+
+.talking + .ctls{}
+
+.ctls{
+  position:relative;
+  z-index:3
+}
+
+.ctl{
+  transition:
+    transform .18s,
+    background .18s,
+    border-color .18s
+}
+
+.ctl:hover{
+  transform:translateY(-1px);
+  border-color:#A7D12966
+}
+
+#play{
+  border-color:#A7D12955;
+  background:#008A3E;
+  color:#F8F9E7
+}
+
+#play:hover{
+  background:#079b49
+}
+
+@keyframes statusPulse{
+  from{
+    transform:scale(.85);
+    opacity:.65
+  }
+
+  to{
+    transform:scale(1.12);
+    opacity:1
+  }
+}
+
+@media (min-width:1100px){
+
+  .agent{
+    padding:12px;
+    grid-template-rows:auto auto auto;
+    gap:10px
+  }
+
+  .box{
+    min-height:0
+  }
+
+  .face{
+    min-height:285px
+  }
+
+  .name{
+    margin-top:-2px
+  }
+
+  .say{
+    box-shadow:inset 0 0 0 1px #A7D12912
+  }
+}
+
+@media (max-width:1099px){
+
+  .box:after{
+    width:92px;
+    height:92px;
+    top:30px
+  }
+
+  .box:before{
+    font-size:.5rem
+  }
+
+  .face{
+    padding:4px!important
+  }
+
+  .name{
+    display:block
+  }
+
+  .name b{
+    font-size:.82rem
+  }
+
+  .name span{
+    font-size:.6rem
+  }
+}
+
+@media (max-width:820px){
+
+  .box:before{
+    display:none
+  }
+
+  .box:after{
+    display:none
+  }
+
+  .face{
+    min-height:0
+  }
+
+  .name{
+    padding:4px 6px
+  }
+
+  .name b{
+    font-size:.72rem
+  }
+
+  .name span{
+    font-size:.55rem
+  }
+}
+
+
+/* =========================================================
+   MEJORAS VISUALES Y EDUCATIVAS
+   ========================================================= */
+
+.cover .copy{
+  position:relative
+}
+
+.cover .copy:after{
+  content:"CAMPAÑA DE CIBERSEGURIDAD";
+  display:inline-flex;
+  align-items:center;
+  margin-top:22px;
+  padding:5px 10px;
+  border:1px solid #A7D12966;
+  border-radius:999px;
+  color:#A7D129;
+  font-size:.68rem;
+  font-weight:700;
+  letter-spacing:.08em
+}
+
+.by{
+  width:100%;
+  max-width:520px
+}
+
+.by strong{
+  display:block;
+  line-height:1.45
+}
+
+.by .year{
+  display:block;
+  width:100%;
+  margin-top:7px;
+  padding-top:8px;
+  border-top:1px solid #A7D12955;
+  text-align:center;
+  color:#F4D03F;
+  font:700 1.45rem var(--serif);
+  letter-spacing:.08em
+}
+
+.copy .lead{
+  max-width:58ch
+}
+
+.slide:not(.cover){
+  background:
+    linear-gradient(
+      135deg,
+      #123F2D 0%,
+      #123F2D 72%,
+      #153F2F 100%
+    )
+}
+
+.slide.plain{
+  position:relative
+}
+
+.slide.plain:before{
+  content:"";
+  position:absolute;
+  right:22px;
+  top:20px;
+  width:76px;
+  height:4px;
+  border-radius:4px;
+  background:linear-gradient(90deg,#A7D129,#F4D03F);
+  opacity:.75
+}
+
+.slide.plain>h2{
+  position:relative
+}
+
+.slide.plain>h2:after{
+  content:"";
+  display:block;
+  width:42px;
+  height:3px;
+  margin-top:10px;
+  border-radius:3px;
+  background:#A7D129
+}
+
+.card,
+.idea,
+.row,
+.chk,
+.step,
+.msg,
+.fl{
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    border-color .18s ease,
+    background-color .18s ease
+}
+
+.card:hover,
+.idea:hover,
+.row:hover,
+.chk:hover,
+.step:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 22px #001f1322
+}
+
+.idea{
+  border:1px solid var(--line);
+  border-top:4px solid var(--g);
+  border-radius:14px;
+  background:var(--sf2);
+  padding:18px 16px
+}
+
+.idea.i2{
+  border-top-color:var(--o)
+}
+
+.idea.i3{
+  border-top-color:#A7D129
+}
+
+.idea b:before{
+  content:"✓";
+  display:inline-grid;
+  place-items:center;
+  width:24px;
+  height:24px;
+  margin-right:8px;
+  border-radius:50%;
+  background:#A7D129;
+  color:#123F2D;
+  font:700 .75rem var(--sans);
+  vertical-align:2px
+}
+
+.rows{
+  border-top:0;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  margin-top:24px
+}
+
+.row{
+  display:block;
+  padding:18px;
+  border:1px solid var(--line);
+  border-left:4px solid var(--o);
+  border-radius:14px;
+  background:var(--sf2);
+  cursor:pointer
+}
+
+.row:nth-child(2){
+  border-left-color:#A7D129
+}
+
+.row:nth-child(3){
+  border-left-color:#b3341f
+}
+
+.row:nth-child(4){
+  border-left-color:#008A3E
+}
+
+.row b{
+  display:block;
+  margin-bottom:7px
+}
+
+.row q{
+  display:block;
+  margin-bottom:8px
+}
+
+.row p{
+  color:var(--ink2)
+}
+
+.row:before{
+  content:"TOCA PARA ESCUCHAR";
+  display:block;
+  margin-bottom:7px;
+  color:var(--mut);
+  font-size:.62rem;
+  font-weight:700;
+  letter-spacing:.08em
+}
+
+.dual .flags{
+  padding:4px
+}
+
+.fl{
+  border:1px solid transparent;
+  border-radius:12px;
+  cursor:pointer
+}
+
+.fl:hover,
+.fl.found{
+  border-color:#A7D12966;
+  background:#214D35
+}
+
+.fl.found:before{
+  background:#A7D129;
+  color:#123F2D
+}
+
+.flag.on{
+  box-shadow:0 0 0 3px #A7D129!important;
+  background:#edf5c8!important;
+  color:#123F2D
+}
+
+.anatomy-progress{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-top:14px;
+  max-width:720px
+}
+
+.anatomy-track{
+  height:7px;
+  flex:1;
+  border-radius:7px;
+  background:var(--line);
+  overflow:hidden
+}
+
+.anatomy-track i{
+  display:block;
+  width:0;
+  height:100%;
+  background:#A7D129;
+  border-radius:7px;
+  transition:width .25s
+}
+
+.anatomy-progress strong{
+  color:#F4D03F;
+  font-size:.82rem;
+  white-space:nowrap
+}
+
+.steps{
+  margin-top:34px
+}
+
+.step{
+  border:1px solid transparent;
+  border-radius:14px;
+  background:var(--sf2);
+  padding:54px 14px 16px
+}
+
+.step:hover{
+  border-color:#A7D12955
+}
+
+.step:before{
+  background:#008A3E;
+  box-shadow:0 0 0 4px #A7D12922
+}
+
+.step:nth-child(5):before{
+  background:#F4D03F;
+  color:#123F2D
+}
+
+.step:after{
+  background:linear-gradient(90deg,#A7D129,#35634B)
+}
+
+.section-kicker{
+  display:inline-flex;
+  margin-bottom:10px;
+  padding:5px 9px;
+  border-radius:999px;
+  background:#A7D12922;
+  color:#A7D129;
+  font-size:.7rem;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase
+}
+
+.module-label{
+  font-size:.72rem;
+  color:var(--mut);
+  white-space:nowrap
+}
+
+.bar{
+  grid-template-columns:auto 1fr auto auto
+}
+
+.bar .right{
+  grid-column:4
+}
+
+.bar .module-label{
+  grid-column:3
+}
+
+.quiz-progress{
+  height:8px;
+  margin-top:12px;
+  max-width:720px;
+  border-radius:8px;
+  background:var(--line);
+  overflow:hidden
+}
+
+.quiz-progress i{
+  display:block;
+  width:0;
+  height:100%;
+  background:linear-gradient(90deg,#A7D129,#F4D03F);
+  transition:width .3s
+}
+
+.qtop{
+  align-items:center;
+  margin-bottom:6px
+}
+
+.msg{
+  box-shadow:0 10px 24px #001f1320
+}
+
+.ans button{
+  transition:
+    transform .15s,
+    background-color .15s,
+    border-color .15s
+}
+
+.ans button:not(:disabled):hover{
+  transform:translateY(-2px);
+  background:var(--hl)
+}
+
+.fb{
+  border-left:5px solid var(--ok)
+}
+
+.fb.bad{
+  border-left-color:var(--r)
+}
+
+.res{
+  border:1px solid #A7D12966;
+  background:linear-gradient(135deg,#214D35,#174C34);
+  text-align:center;
+  padding:28px
+}
+
+.res h3{
+  font-size:2.4rem;
+  color:#F4D03F
+}
+
+.res-score{
+  font:700 3rem var(--serif);
+  color:#A7D129;
+  line-height:1;
+  margin:5px 0 10px
+}
+
+.res-list{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:7px 14px;
+  margin:18px auto;
+  max-width:560px;
+  text-align:left
+}
+
+.res-list span{
+  padding:8px 10px;
+  border-radius:9px;
+  background:#123F2D;
+  color:var(--ink2);
+  font-size:.86rem
+}
+
+.res-list span:before{
+  content:"✓";
+  color:#A7D129;
+  font-weight:700;
+  margin-right:7px
+}
+
+.result-actions{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:14px
+}
+
+.result-actions button{
+  border:1px solid #A7D129;
+  border-radius:20px;
+  padding:9px 17px;
+  background:#A7D129;
+  color:#123F2D;
+  font-weight:700;
+  cursor:pointer
+}
+
+.result-actions .secondary{
+  background:transparent;
+  color:var(--ink);
+  border-color:var(--dk)
+}
+
+.contact{
+  border-left:4px solid #F4D03F
+}
+
+.complete-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  margin-bottom:10px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:#A7D129;
+  color:#123F2D;
+  font-size:.72rem;
+  font-weight:800;
+  letter-spacing:.06em
+}
+
+
+/* =========================================================
+   REDISEÑO UDEC · PLATAFORMA DE CAPACITACIÓN
+   ========================================================= */
+
+:root{
+  --cream:#F8F9E7;
+  --cream2:#FFFDF2;
+  --deep:#003F2A;
+  --green:#008A3E;
+  --lime:#A7D129;
+  --yellow:#F4D03F;
+  --darkText:#12382A;
+  --softText:#52665B;
+  --panel:#062F24
+}
+
+body{
+  background:
+    radial-gradient(
+      circle at 70% 10%,
+      #0a5139 0,
+      #052f24 42%,
+      #03271e 100%
+    );
+  color:var(--ink);
+  min-height:100vh
+}
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.15;
+  background-image:
+    linear-gradient(
+      90deg,
+      transparent 97%,
+      #55b58a 97%
+    ),
+    linear-gradient(
+      0deg,
+      transparent 97%,
+      #55b58a 97%
+    );
+  background-size:90px 90px;
+  mask-image:linear-gradient(to bottom,black,transparent 75%)
+}
+
+.head{
+  height:92px;
+  margin:0;
+  padding:12px 42px;
+  border-radius:0 0 20px 20px;
+  background:linear-gradient(
+    100deg,
+    #003d2a,
+    #006f45 62%,
+    #004b2d
+  );
+  border-bottom:3px solid var(--yellow);
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:28px;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 8px 30px #001f1433
+}
+
+.head:after{
+  content:"";
+  position:absolute;
+  right:28%;
+  top:-70px;
+  width:420px;
+  height:180px;
+  border:1px solid #2bbf7d55;
+  transform:skewX(-35deg);
+  box-shadow:
+    80px 35px 0 -1px #2bbf7d22,
+    160px 70px 0 -1px #2bbf7d22;
+  pointer-events:none
+}
+
+.head-brand{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  z-index:1
+}
+
+.head-brand .logo{
+  width:62px;
+  height:62px
+}
+
+.head-brand b{
+  border-left:1px solid #fff7;
+  padding-left:18px;
+  font:700 1.55rem/1.05 var(--serif);
+  color:#fff
+}
+
+.head-brand small{
+  display:block;
+  font:600 .78rem var(--sans);
+  color:#d7eee1;
+  margin-top:4px
+}
+
+.head-title{
+  font:700 1.35rem var(--sans);
+  color:#fff;
+  letter-spacing:.2px;
+  z-index:1;
+  border-left:1px solid #ffffff55;
+  padding-left:28px
+}
+
+.head-message{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  color:#fff;
+  z-index:1
+}
+
+.head-message .shield{
+  width:48px;
+  height:48px;
+  border:3px solid var(--yellow);
+  clip-path:polygon(
+    50% 0,
+    94% 18%,
+    87% 68%,
+    50% 100%,
+    13% 68%,
+    6% 18%
+  );
+  display:grid;
+  place-items:center;
+  color:#7cffb6;
+  font-weight:900;
+  font-size:1.5rem
+}
+
+.head-message b{
+  display:block;
+  font-size:1rem
+}
+
+.head-message small{
+  display:block;
+  color:#d8eee2;
+  font-size:.78rem;
+  margin-top:3px
+}
+
+
+/* =========================================================
+   ESTRUCTURA UDEC
+   ========================================================= */
+
+.stage{
+  max-width:1580px;
+  margin:0 auto;
+  padding:28px 18px 30px;
+  display:grid;
+  grid-template-columns:245px minmax(0,1fr) 305px;
+  gap:14px;
+  align-items:start
+}
+
+.stage main{
+  min-width:0
+}
+
+.deck{
+  max-width:none;
+  width:100%;
+  border:4px solid #1b6749;
+  border-radius:22px;
+  background:var(--cream);
+  box-shadow:0 22px 60px #001f144d;
+  overflow:hidden;
+  color:var(--darkText)
+}
+
+
+/* =========================================================
+   MENÚ LATERAL
+   ========================================================= */
+
+.sidebar{
+  min-height:690px;
+  padding:10px 0 0;
+  border:1px solid #138b5a88;
+  border-radius:20px;
+  background:linear-gradient(
+    180deg,
+    #064c37dd,
+    #032d23dd
+  );
+  box-shadow:
+    inset 0 1px #ffffff10,
+    0 16px 40px #001f1433;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden
+}
+
+.side-brand{
+  padding:13px 15px 16px;
+  display:flex;
+  gap:10px;
+  align-items:center;
+  border-bottom:1px solid #ffffff14
+}
+
+.side-mark{
+  width:38px;
+  height:38px;
+  border:2px solid var(--yellow);
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  color:var(--yellow);
+  font-size:1.25rem
+}
+
+.side-brand b{
+  display:block;
+  color:#fff;
+  font-size:.86rem
+}
+
+.side-brand small{
+  display:block;
+  color:#a9c7b7;
+  font-size:.68rem;
+  margin-top:2px
+}
+
+.side-nav{
+  padding:8px
+}
+
+.side-item{
+  width:100%;
+  border:0;
+  border-left:4px solid transparent;
+  background:transparent;
+  color:#dcece4;
+  text-align:left;
+  padding:10px 8px;
+  border-radius:13px;
+  display:flex;
+  gap:11px;
+  align-items:center;
+  cursor:pointer;
+  margin-bottom:2px;
+  transition:.2s
+}
+
+.side-item:hover{
+  background:#ffffff0b;
+  border-left-color:#75d89e
+}
+
+.side-item.active{
+  background:linear-gradient(
+    90deg,
+    #1b5a3bd9,
+    #174a32aa
+  );
+  border-left-color:var(--yellow);
+  box-shadow:inset 0 0 20px #f4d03f0b
+}
+
+.side-icon{
+  width:30px;
+  text-align:center;
+  color:#fff;
+  font-size:1.25rem;
+  flex:none
+}
+
+.side-item b{
+  display:block;
+  font-size:.78rem;
+  line-height:1.15
+}
+
+.side-item small{
+  display:block;
+  color:#aac7b9;
+  font-size:.68rem;
+  margin-top:3px;
+  line-height:1.15
+}
+
+.side-footer{
+  margin-top:auto;
+  padding:18px 16px;
+  border-top:1px solid #ffffff12;
+  display:flex;
+  flex-direction:column;
+  color:#a9c7b7;
+  font-size:.65rem
+}
+
+.side-footer strong{
+  font:700 1.8rem var(--serif);
+  color:#fff
+}
+
+.side-footer span{
+  margin-top:-2px
+}
+
+.side-footer em{
+  font-style:normal;
+  color:var(--yellow);
+  font-size:1.2rem;
+  font-weight:800;
+  margin-top:3px
+}
+
+
+/* =========================================================
+   PORTADA UDEC
+   ========================================================= */
+
+.slide{
+  min-height:690px;
+  animation:in .35s;
+  background:var(--cream);
+  color:var(--darkText)
+}
+
+.slide.cover{
+  display:grid;
+  grid-template-columns:1.04fr .96fr
+}
+
+.copy{
+  padding:42px 48px;
+  justify-content:flex-start
+}
+
+.cover .copy{
+  padding-top:62px
+}
+
+.cover h1{
+  font-family:var(--sans);
+  font-size:clamp(3rem,5vw,5.5rem);
+  line-height:.94;
+  letter-spacing:-.045em;
+  color:var(--deep);
+  max-width:680px
+}
+
+.cover h1:after{
+  content:"";
+  display:block;
+  width:105px;
+  height:7px;
+  border-radius:10px;
+  background:var(--yellow);
+  margin-top:20px
+}
+
+.lead{
+  color:#4c5f56
+}
+
+.cover .lead{
+  font-size:1.2rem;
+  max-width:540px;
+  margin-top:20px
+}
+
+.by{
+  color:#29493c;
+  font-size:.9rem;
+  margin-top:24px
+}
+
+.by strong{
+  color:#123c2c
+}
+
+.by .year{
+  display:block;
+  text-align:center;
+  color:#d6a800;
+  font-size:1.15rem;
+  margin-top:7px
+}
+
+.go{
+  background:var(--green);
+  color:#fff;
+  border-radius:13px;
+  padding:13px 30px;
+  box-shadow:0 7px 18px #008a3e2b
+}
+
+.hint{
+  color:#698075
+}
+
+
+/* =========================================================
+   PANEL VERDE
+   ========================================================= */
+
+.art{
+  background:
+    radial-gradient(
+      circle at 70% 25%,
+      #1aa968,
+      #008a3e 48%,
+      #005d39 100%
+    );
+  padding:38px;
+  min-height:690px
+}
+
+.art:before{
+  content:"";
+  position:absolute;
+  inset:20px;
+  border:1px solid #c4ed9c33;
+  border-radius:35% 25% 40% 30%;
+  transform:rotate(-5deg)
+}
+
+.art h3{
+  position:relative;
+  z-index:1;
+  color:#fff;
+  font-family:var(--sans);
+  font-size:1.8rem
+}
+
+.art p{
+  position:relative;
+  z-index:1;
+  color:#f3fff8;
+  font-size:.9rem
+}
+
+.art svg{
+  position:relative;
+  z-index:1;
+  max-height:430px
+}
+
+
+/* =========================================================
+   DIAPOSITIVAS INTERNAS
+   ========================================================= */
+
+.plain{
+  padding:42px 48px
+}
+
+.plain h2{
+  font-family:var(--sans);
+  color:var(--deep);
+  font-size:clamp(2rem,3.4vw,3rem);
+  margin-top:7px
+}
+
+.section-kicker{
+  display:inline-flex;
+  background:#e8f2d5;
+  color:#006b3e;
+  border:1px solid #b9d56f;
+  border-radius:20px;
+  padding:6px 13px;
+  font-weight:800;
+  font-size:.72rem;
+  letter-spacing:.05em
+}
+
+.plain .lead{
+  color:#506158
+}
+
+.ideas,
+.grid3,
+.dual{
+  margin-top:30px
+}
+
+.idea,
+.card{
+  background:#fffdf5;
+  border:1px solid #d9dfd0;
+  border-radius:16px;
+  box-shadow:0 8px 20px #1d3f2b0b
+}
+
+.idea{
+  padding:20px;
+  border-top:4px solid var(--green)
+}
+
+.idea b,
+.card b{
+  color:var(--deep)
+}
+
+.idea p,
+.card p{
+  color:#53645b
+}
+
+.note-q{
+  color:#365047;
+  background:#f1f5e8;
+  border-radius:14px;
+  padding:14px 18px;
+  border-left:5px solid var(--yellow)
+}
+
+.mail{
+  box-shadow:0 10px 30px #173c2b18
+}
+
+.flag{
+  background:#f7faef!important;
+  color:#28473b!important;
+  border-color:#cad7bd!important
+}
+
+.flag.on{
+  background:#e7f3ca!important;
+  border-color:#a7d129!important
+}
+
+.mail .mail-h{
+  background:#edf2e8
+}
+
+.grid3 .card{
+  padding:20px
+}
+
+.card svg{
+  stroke:var(--green)
+}
+
+
+/* =========================================================
+   BARRA UDEC
+   ========================================================= */
+
+.bar{
+  background:#053b2b!important;
+  border-top:1px solid #1c7652!important;
+  padding:14px 18px!important;
+  color:#fff!important
+}
+
+.bar button{
+  border-radius:22px!important;
+  border:1px solid #4c836c!important;
+  background:#0a4936!important;
+  color:#fff!important;
+  padding:10px 18px!important;
+  font-weight:700!important
+}
+
+.bar button#next{
+  background:var(--yellow)!important;
+  color:#183225!important;
+  border-color:var(--yellow)!important
+}
+
+.bar button:disabled{
+  opacity:.4
+}
+
+.prog{
+  height:8px!important;
+  background:#234d3c!important;
+  border-radius:20px!important
+}
+
+.prog i{
+  background:linear-gradient(
+    90deg,
+    var(--yellow),
+    var(--lime)
+  )!important
+}
+
+.module-label{
+  font-weight:700;
+  color:#e8f3ea
+}
+
+.dot{
+  background:#9eb8aa!important
+}
+
+.dot[aria-current="true"]{
+  background:var(--yellow)!important
+}
+
+
+/* =========================================================
+   PANEL DEL AVATAR · DISEÑO FINAL
+   ========================================================= */
+
+.agent{
+  background:linear-gradient(
+    180deg,
+    #022d23,
+    #063d2d
+  )!important;
+  border:1px solid #18a66c!important;
+  border-radius:20px!important;
+  box-shadow:0 20px 50px #001d1344!important;
+  padding:10px!important;
+  position:sticky!important;
+  top:15px
+}
+
+.agent:before{
+  content:"";
+  position:absolute;
+  inset:9px;
+  border:1px solid #21c27c44;
+  border-radius:17px;
+  pointer-events:none
+}
+
+.box{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  padding:18px 8px 4px!important
+}
+
+.min{
+  z-index:4;
+  background:#24644c!important
+}
+
+.face{
+  border:2px solid #48f5a4!important;
+  border-radius:25px!important;
+  background:radial-gradient(
+    circle,
+    #0c5e43,
+    #042d24
+  )!important;
+  box-shadow:
+    0 0 0 1px #0b9d66,
+    0 0 25px #35e49b33!important;
+  padding:12px!important
+}
+
+.av{
+  width:100%!important;
+  height:245px!important
+}
+
+.halo{
+  stroke:#48f5a4!important;
+  stroke-opacity:.45!important;
+  fill:#16a56810!important
+}
+
+.name{
+  display:none!important
+}
+
+.agent-heading{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  color:#fff;
+  margin:4px 0 9px;
+  position:relative;
+  z-index:2
+}
+
+.agent-heading b{
+  display:block;
+  font-size:.85rem;
+  letter-spacing:.02em
+}
+
+.agent-heading strong{
+  display:block;
+  text-align:center;
+  color:#00c875;
+  font-size:.95rem;
+  margin-top:2px
+}
+
+.agent-shield{
+  width:35px;
+  height:40px;
+  display:grid;
+  place-items:center;
+  border:2px solid #7affb7;
+  clip-path:polygon(
+    50% 0,
+    92% 18%,
+    84% 68%,
+    50% 100%,
+    16% 68%,
+    8% 18%
+  );
+  color:#7affb7;
+  font-weight:900
+}
+
+.speech-card{
+  position:relative;
+  margin:8px 8px 10px;
+  padding:16px 14px;
+  border-radius:18px;
+  background:linear-gradient(
+    145deg,
+    #eff7ef,
+    #cfe0d8
+  );
+  color:#193c30;
+  font-size:.8rem;
+  line-height:1.55;
+  box-shadow:inset 0 0 0 1px #ffffffaa
+}
+
+.speech-card:before{
+  content:"";
+  position:absolute;
+  left:14px;
+  bottom:-9px;
+  border:9px solid transparent;
+  border-top-color:#cfe0d8;
+  border-left-width:0
+}
+
+.speech-card.idle{
+  min-height:120px
+}
+
+.ctls{
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  gap:7px!important;
+  padding:3px 8px 8px!important;
+  position:relative;
+  z-index:2
+}
+
+.ctl{
+  border:1px solid #267a59!important;
+  background:#073e2e!important;
+  color:#fff!important;
+  border-radius:13px!important;
+  padding:10px 7px!important;
+  font-size:.72rem!important
+}
+
+.ctl:first-child{
+  background:linear-gradient(
+    90deg,
+    #0fa95e,
+    #32e98e
+  )!important;
+  color:#05301f!important;
+  border-color:#72ffb7!important;
+  font-weight:900
+}
+
+.ctl:hover{
+  filter:brightness(1.08)
+}
+
+.status-dot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:#20e989;
+  box-shadow:0 0 12px #20e989;
+  display:inline-block;
+  margin-right:7px
+}
+
+.box.talking .status-dot{
+  animation:pulse 1s infinite
+}
+
+.box.talking .face{
+  box-shadow:
+    0 0 0 2px #5dffae,
+    0 0 32px #36ee9c88!important
+}
+
+.box.talking .agent-heading strong{
+  color:#ffe04e
+}
+
+
+/* =========================================================
+   RESPONSIVE UDEC
+   ========================================================= */
+
+@media (max-width:1180px){
+
+  .stage{
+    grid-template-columns:
+      210px
+      minmax(0,1fr)
+      270px
+  }
+
+  .head-title{
+    font-size:1.05rem
+  }
+
+  .head-message{
+    display:none
+  }
+
+  .side-item b{
+    font-size:.72rem
+  }
+
+  .side-item small{
+    font-size:.62rem
+  }
+
+  .av{
+    height:215px!important
+  }
+}
+
+@media (max-width:980px){
+
+  .stage{
+    grid-template-columns:1fr
+  }
+
+  .sidebar{
+    display:none
+  }
+
+  .agent{
+    position:relative!important;
+    top:auto;
+    max-width:420px;
+    margin:0 auto
+  }
+
+  .deck{
+    order:1
+  }
+
+  .agent{
+    order:2
+  }
+
+  .head{
+    grid-template-columns:1fr auto
+  }
+
+  .head-title{
+    border:0;
+    padding:0
+  }
+
+  .head-brand b{
+    font-size:1.1rem
+  }
+
+  .slide,
+  .art{
+    min-height:580px
+  }
+}
+
+@media (max-width:640px){
+
+  .head{
+    height:auto;
+    padding:10px 15px
+  }
+
+  .head-brand .logo{
+    width:46px;
+    height:46px
+  }
+
+  .head-brand b{
+    font-size:.95rem
+  }
+
+  .head-title{
+    font-size:.82rem
+  }
+
+  .stage{
+    padding:12px 8px 20px
+  }
+
+  .deck{
+    border-width:2px;
+    border-radius:16px
+  }
+
+  .slide.cover{
+    grid-template-columns:1fr
+  }
+
+  .cover .copy{
+    padding:30px 22px 20px
+  }
+
+  .cover h1{
+    font-size:clamp(2.6rem,13vw,4rem)
+  }
+
+  .art{
+    min-height:340px!important;
+    padding:22px
+  }
+
+  .art svg{
+    max-height:260px
+  }
+
+  .plain{
+    padding:28px 20px
+  }
+
+  .ideas,
+  .grid3,
+  .dual{
+    grid-template-columns:1fr
+  }
+
+  .bar{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:9px
+  }
+
+  .bar .right{
+    display:none
+  }
+
+  .bar .prog{
+    width:100%
+  }
+
+  .agent{
+    border-radius:16px!important
+  }
+
+  .speech-card{
+    font-size:.75rem
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+
+  .box.talking .status-dot{
+    animation:none
+  }
+
+  .face,
+  .agent{
+    transition:none!important
+  }
+}
+
+
+/* =========================================================
    ANIMACIÓN DE PESCA
-   ========================================= */
+   ---------------------------------------------------------
+   Al hacer clic sobre la ilustración:
+   - El sobre sube y baja.
+   - La línea se mueve ligeramente.
+   - La parte inferior de la cuerda acompaña
+     el movimiento.
+   ========================================================= */
 
-.fishing-animation {
-  cursor: pointer;
-  overflow: visible;
+.fishing-animation{
+  cursor:pointer;
+  overflow:visible
 }
 
-/* Preparación de los elementos SVG */
+
+/* Elementos SVG preparados para animación */
+
 .fishing-hook,
 .fishing-line,
-.fishing-string {
-  transform-box: fill-box;
-  transform-origin: center top;
+.fishing-string{
+  transform-box:fill-box;
+  transform-origin:center top
 }
+
 
 /* Movimiento del sobre / anzuelo */
-.fishing-animation.fishing-active .fishing-hook {
-  animation: fishingBob 1.4s ease-in-out 3;
+
+.fishing-animation.fishing-active .fishing-hook{
+  animation:fishingBob 1.4s ease-in-out 3
 }
+
 
 /* Movimiento de la línea */
-.fishing-animation.fishing-active .fishing-line {
-  animation: fishingLine 1.4s ease-in-out 3;
-}
 
-/* Movimiento de la parte inferior de la cuerda */
-.fishing-animation.fishing-active .fishing-string {
-  animation: fishingString 1.4s ease-in-out 3;
+.fishing-animation.fishing-active .fishing-line{
+  animation:fishingLine 1.4s ease-in-out 3
 }
 
 
-/* =========================================
+/* Movimiento de la cuerda */
+
+.fishing-animation.fishing-active .fishing-string{
+  animation:fishingString 1.4s ease-in-out 3
+}
+
+
+/* =========================================================
    MOVIMIENTO DEL SOBRE / ANZUELO
-   ========================================= */
+   ========================================================= */
 
-@keyframes fishingBob {
+@keyframes fishingBob{
 
-  0% {
-    transform: translateY(0) rotate(-9deg);
+  0%{
+    transform:translateY(0) rotate(-9deg)
   }
 
-  25% {
-    transform: translateY(-18px) rotate(-7deg);
+  25%{
+    transform:translateY(-18px) rotate(-7deg)
   }
 
-  50% {
-    transform: translateY(8px) rotate(-11deg);
+  50%{
+    transform:translateY(8px) rotate(-11deg)
   }
 
-  75% {
-    transform: translateY(-12px) rotate(-8deg);
+  75%{
+    transform:translateY(-12px) rotate(-8deg)
   }
 
-  100% {
-    transform: translateY(0) rotate(-9deg);
+  100%{
+    transform:translateY(0) rotate(-9deg)
   }
-
 }
 
 
-/* =========================================
+/* =========================================================
    MOVIMIENTO DE LA LÍNEA
-   ========================================= */
+   ========================================================= */
 
-@keyframes fishingLine {
+@keyframes fishingLine{
 
-  0% {
-    transform: scaleY(1);
+  0%{
+    transform:scaleY(1)
   }
 
-  25% {
-    transform: scaleY(0.90);
+  25%{
+    transform:scaleY(.90)
   }
 
-  50% {
-    transform: scaleY(1.04);
+  50%{
+    transform:scaleY(1.04)
   }
 
-  75% {
-    transform: scaleY(0.94);
+  75%{
+    transform:scaleY(.94)
   }
 
-  100% {
-    transform: scaleY(1);
+  100%{
+    transform:scaleY(1)
   }
-
 }
 
 
-/* =========================================
+/* =========================================================
    MOVIMIENTO DE LA CUERDA
-   ========================================= */
+   ========================================================= */
 
-@keyframes fishingString {
+@keyframes fishingString{
 
-  0% {
-    transform: translateY(0);
+  0%{
+    transform:translateY(0)
   }
 
-  25% {
-    transform: translateY(-8px);
+  25%{
+    transform:translateY(-8px)
   }
 
-  50% {
-    transform: translateY(4px);
+  50%{
+    transform:translateY(4px)
   }
 
-  75% {
-    transform: translateY(-6px);
+  75%{
+    transform:translateY(-6px)
   }
 
-  100% {
-    transform: translateY(0);
+  100%{
+    transform:translateY(0)
+  }
+}
+
+
+/* =========================================================
+   TAMAÑO UNIFICADO DE TODA LA PLATAFORMA
+   ---------------------------------------------------------
+   ESTE ES EL BLOQUE IMPORTANTE.
+   
+   En escritorio:
+   
+   ┌─────────────┐ ┌────────────────────┐ ┌─────────────┐
+   │             │ │                    │ │             │
+   │   MENÚ      │ │   PRESENTACIÓN     │ │   AVATAR    │
+   │             │ │                    │ │             │
+   │             │ │                    │ │             │
+   │             │ ├────────────────────┤ │             │
+   │             │ │ BARRA NAVEGACIÓN   │ │             │
+   └─────────────┘ └────────────────────┘ └─────────────┘
+   
+   Los tres módulos utilizan exactamente la misma altura.
+   
+   IMPORTANTE:
+   No se cambia el contenido de las diapositivas.
+   Solo se controla el espacio exterior.
+   ========================================================= */
+
+@media (min-width:981px){
+
+  /* Altura única */
+
+  :root{
+    --platform-height:690px
   }
 
+
+  /* =======================================================
+     CONTENEDOR PRINCIPAL
+     ======================================================= */
+
+  .stage{
+    align-items:stretch!important
+  }
+
+
+  /* =======================================================
+     MENÚ LATERAL
+     ======================================================= */
+
+  .sidebar{
+    height:var(--platform-height)!important;
+    min-height:var(--platform-height)!important;
+    max-height:var(--platform-height)!important;
+    box-sizing:border-box!important
+  }
+
+
+  /* =======================================================
+     PRESENTACIÓN
+   
+     FLEX EN COLUMNA:
+   
+     #slides
+          ↓
+     ocupa todo el espacio disponible
+   
+     .bar
+          ↓
+     mantiene su altura
+     ======================================================= */
+
+  .deck{
+    width:100%!important;
+
+    height:var(--platform-height)!important;
+    min-height:var(--platform-height)!important;
+    max-height:var(--platform-height)!important;
+
+    display:flex!important;
+    flex-direction:column!important;
+
+    box-sizing:border-box!important;
+
+    overflow:hidden!important
+  }
+
+
+  /* =======================================================
+     CONTENEDOR DE DIAPOSITIVAS
+   
+     flex:1 permite que ocupe el espacio disponible
+     sin modificar el tamaño del deck.
+     ======================================================= */
+
+  #slides{
+    width:100%!important;
+
+    flex:1 1 auto!important;
+
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important;
+
+    position:relative!important;
+
+    overflow:hidden!important;
+
+    box-sizing:border-box!important
+  }
+
+
+  /* =======================================================
+     TODAS LAS DIAPOSITIVAS
+   
+     Todas reciben exactamente la misma altura.
+     ======================================================= */
+
+  .slide{
+    width:100%!important;
+
+    height:100%!important;
+    min-height:0!important;
+    max-height:100%!important;
+
+    box-sizing:border-box!important;
+
+    overflow-y:auto!important;
+    overflow-x:hidden!important
+  }
+
+
+  /* =======================================================
+     PORTADA
+   
+     Conserva las dos columnas.
+     ======================================================= */
+
+  .slide.cover{
+    width:100%!important;
+
+    height:100%!important;
+    min-height:0!important;
+    max-height:100%!important;
+
+    box-sizing:border-box!important;
+
+    grid-template-columns:1.04fr .96fr!important
+  }
+
+
+  /* =======================================================
+     PANEL VERDE
+   
+     No puede imponer una altura propia.
+     ======================================================= */
+
+  .art{
+    height:100%!important;
+    min-height:0!important;
+    max-height:100%!important;
+
+    box-sizing:border-box!important
+  }
+
+
+  /* =======================================================
+     DIAPOSITIVAS INTERNAS
+     ======================================================= */
+
+  .slide.plain{
+    width:100%!important;
+
+    height:100%!important;
+    min-height:0!important;
+    max-height:100%!important;
+
+    box-sizing:border-box!important
+  }
+
+
+  /* =======================================================
+     BARRA INFERIOR
+   
+     La barra conserva su tamaño.
+     No puede hacer crecer el deck.
+     ======================================================= */
+
+  .bar{
+    flex:0 0 auto!important;
+    width:100%!important;
+    box-sizing:border-box!important
+  }
+
+
+  /* =======================================================
+     AVATAR
+   
+     Misma altura que el resto de la plataforma.
+     ======================================================= */
+
+  .agent{
+    height:var(--platform-height)!important;
+    min-height:var(--platform-height)!important;
+    max-height:var(--platform-height)!important;
+
+    box-sizing:border-box!important;
+
+    overflow:hidden!important
+  }
+
+
+  /* =======================================================
+     SCROLL INTERNO
+   
+     Si una diapositiva tiene mucho contenido,
+     solamente ella tendrá scroll.
+     ======================================================= */
+
+  .slide::-webkit-scrollbar{
+    width:6px
+  }
+
+  .slide::-webkit-scrollbar-thumb{
+    background:#3c8061;
+    border-radius:10px
+  }
+
+  .slide::-webkit-scrollbar-track{
+    background:transparent
+  }
+}
+
+
+/* =========================================================
+   TABLET
+   ---------------------------------------------------------
+   A partir de 980px dejamos que la interfaz se adapte.
+   ========================================================= */
+
+@media (max-width:980px){
+
+  .stage{
+    align-items:initial!important
+  }
+
+  .sidebar{
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important
+  }
+
+  .deck{
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important;
+
+    display:block!important;
+
+    overflow:visible!important
+  }
+
+  #slides{
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important;
+
+    overflow:visible!important
+  }
+
+  .slide,
+  .slide.cover,
+  .slide.plain{
+    height:auto!important;
+    min-height:580px!important;
+    max-height:none!important;
+
+    overflow:visible!important
+  }
+
+  .art{
+    height:auto!important;
+    min-height:580px!important;
+    max-height:none!important
+  }
+
+  .agent{
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important
+  }
+}
+
+
+/* =========================================================
+   CELULAR
+   ---------------------------------------------------------
+   En móvil no utilizamos altura fija.
+   ========================================================= */
+
+@media (max-width:640px){
+
+  .stage{
+    align-items:initial!important
+  }
+
+  .deck{
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important
+  }
+
+  #slides{
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important;
+
+    overflow:visible!important
+  }
+
+  .slide,
+  .slide.cover,
+  .slide.plain{
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important;
+
+    overflow:visible!important
+  }
+
+  .art{
+    height:auto!important;
+    min-height:300px!important;
+    max-height:none!important
+  }
+
+  .agent{
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important
+  }
+} 
+/* =========================================================
+   CORRECCIÓN FINAL · ALTURA REALMENTE UNIFICADA
+   ---------------------------------------------------------
+   Este bloque se agrega AL FINAL para que tenga prioridad
+   sobre las reglas anteriores sin borrar ni reemplazar
+   ninguna de las funciones existentes.
+
+   En escritorio, sidebar + deck + avatar usan exactamente
+   la misma altura. El deck conserva su barra inferior dentro
+   de esa misma altura y cada diapositiva ocupa el espacio
+   disponible sin cambiar el tamaño del módulo.
+   ========================================================= */
+
+@media (min-width:1100px){
+
+  :root{
+    /* Máximo de 690px, pero se adapta si la ventana es menor. */
+    --platform-height:min(690px, calc(100vh - 120px));
+  }
+
+  /* Los tres módulos parten de la misma fila y altura. */
+  .stage{
+    display:grid !important;
+    grid-template-columns:245px minmax(0,1fr) 305px !important;
+    align-items:stretch !important;
+  }
+
+  .sidebar,
+  .deck,
+  .agent{
+    height:var(--platform-height) !important;
+    min-height:var(--platform-height) !important;
+    max-height:var(--platform-height) !important;
+    align-self:stretch !important;
+    box-sizing:border-box !important;
+  }
+
+  /* La presentación se divide en: diapositiva + barra. */
+  .deck{
+    display:flex !important;
+    flex-direction:column !important;
+    overflow:hidden !important;
+  }
+
+  #slides{
+    flex:1 1 0 !important;
+    width:100% !important;
+    height:auto !important;
+    min-height:0 !important;
+    max-height:none !important;
+    position:relative !important;
+    overflow:hidden !important;
+  }
+
+  /* Todas las páginas ocupan exactamente el mismo rectángulo. */
+  .slide,
+  .slide.cover,
+  .slide.plain{
+    width:100% !important;
+    height:100% !important;
+    min-height:0 !important;
+    max-height:none !important;
+    box-sizing:border-box !important;
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+  }
+
+  /* La portada conserva sus dos columnas. */
+  .slide.cover{
+    display:grid !important;
+    grid-template-columns:1.04fr .96fr !important;
+  }
+
+  /* El panel verde no puede imponer una altura diferente. */
+  .art{
+    height:100% !important;
+    min-height:0 !important;
+    max-height:none !important;
+    box-sizing:border-box !important;
+  }
+
+  /* La barra inferior nunca modifica la altura del deck. */
+  .bar{
+    flex:0 0 auto !important;
+    width:100% !important;
+    box-sizing:border-box !important;
+  }
+
+  /* El avatar conserva exactamente la altura de la plataforma. */
+  .agent{
+    position:sticky !important;
+    top:15px !important;
+    overflow:hidden !important;
+  }
+}
+
+/* =========================================================
+   TABLET · MISMA ALTURA ENTRE MÓDULOS CUANDO ESTÁN APILADOS
+   ========================================================= */
+
+@media (min-width:981px) and (max-width:1099px){
+
+  :root{
+    --platform-height:min(690px, calc(100vh - 110px));
+  }
+
+  .stage{
+    display:grid !important;
+    grid-template-columns:210px minmax(0,1fr) 270px !important;
+    align-items:stretch !important;
+  }
+
+  .sidebar,
+  .deck,
+  .agent{
+    height:var(--platform-height) !important;
+    min-height:var(--platform-height) !important;
+    max-height:var(--platform-height) !important;
+    box-sizing:border-box !important;
+  }
+
+  .deck{
+    display:flex !important;
+    flex-direction:column !important;
+    overflow:hidden !important;
+  }
+
+  #slides{
+    flex:1 1 0 !important;
+    height:auto !important;
+    min-height:0 !important;
+    overflow:hidden !important;
+  }
+
+  .slide,
+  .slide.cover,
+  .slide.plain{
+    width:100% !important;
+    height:100% !important;
+    min-height:0 !important;
+    max-height:none !important;
+    box-sizing:border-box !important;
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+  }
+
+  .art{
+    height:100% !important;
+    min-height:0 !important;
+    max-height:none !important;
+  }
+
+  .bar{
+    flex:0 0 auto !important;
+  }
+
+  .agent{
+    position:sticky !important;
+    top:15px !important;
+    overflow:hidden !important;
+  }
+}
+/* =========================================================
+   QUITAR BORDE DE ENFOQUE DE LA ANIMACIÓN DE PESCA
+   ---------------------------------------------------------
+   El elemento de pesca usa tabindex="0" para permitir
+   interacción con teclado y clic. Este estilo evita que
+   el navegador dibuje el rectángulo negro al seleccionarlo.
+   ========================================================= */
+
+.fishing-animation {
+  outline: none !important;
+}
+
+.fishing-animation:focus {
+  outline: none !important;
+}
+
+.fishing-animation:focus-visible {
+  outline: none !important;
 }
