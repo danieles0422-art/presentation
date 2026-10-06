@@ -1454,3 +1454,31 @@ body.info-open{overflow:hidden}
 .contents-card small{font-size:.79rem;line-height:1.45;color:#477c67;}
 @media(max-width:900px){.contents-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.contents-card{min-height:108px;padding:12px}}
 @media(max-width:520px){.contents-grid{grid-template-columns:1fr}.contents-card{min-height:auto}}
+
+
+/* Diapositiva: problema y línea translocal */
+.translocal-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  align-items: stretch;
+  margin-top: 18px;
+}
+.translocal-grid .evidence-card { min-width: 0; height: 100%; }
+.translocal-icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; margin-bottom: 12px; border-radius: 14px;
+  background: linear-gradient(135deg, #ffdf35, #e8b900); color: #064b31; font-size: 23px;
+}
+.translocal-slide .research-note { margin-top: 18px; }
+@media (max-width: 1100px) { .translocal-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 620px) { .translocal-grid { grid-template-columns: 1fr; } }
+
+/* Ajustes ODC: narraciones largas no deben desplazar ni recortar el avatar. */
+.agent .speech-card{max-height:150px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;overflow-wrap:anywhere}
+.agent .face{height:auto!important;min-height:300px!important;overflow:visible!important;display:flex;align-items:center;justify-content:center}
+.agent .av{display:block;width:100%!important;height:270px!important;max-height:300px!important;object-fit:contain;flex:none}
+.mini-activity .activity-question{font-weight:700;color:#153d2d;margin:8px 0 12px;line-height:1.5}
+.mini-activity .info-trigger{margin-top:10px}
+.mini-activity .mini-options button{white-space:normal;line-height:1.35}
+@media(max-width:1099px){.agent .face{min-height:200px!important}.agent .av{height:190px!important;max-height:220px!important}.agent .speech-card{max-height:130px}}
