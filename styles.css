@@ -1441,3 +1441,16 @@ body.info-open{overflow:hidden}
   .quiz-activity .qtop span{display:block}
   .quiz-activity .qtop span:last-child{margin-top:3px}
 }
+
+
+/* Tabla de contenido interactiva: 17 accesos directos */
+.contents-slide{overflow-y:auto;}
+.contents-intro{max-width:850px;color:var(--mut);margin:0 0 18px;line-height:1.55;}
+.contents-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0 24px;}
+.contents-card{display:flex;flex-direction:column;align-items:flex-start;gap:7px;min-height:118px;padding:15px;border:1px solid rgba(9,91,62,.18);border-radius:16px;background:linear-gradient(135deg,#fffdf4 0%,#fff 58%);color:#064d35;text-align:left;cursor:pointer;box-shadow:0 8px 20px rgba(0,53,36,.07);transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;}
+.contents-card:hover,.contents-card:focus-visible{transform:translateY(-2px);border-color:#d8b62c;box-shadow:0 10px 22px rgba(0,53,36,.13);outline:none;}
+.contents-icon{display:grid;place-items:center;width:36px;height:36px;border-radius:11px;background:#f5d63f;color:#064d35;font-size:1.15rem;font-weight:800;}
+.contents-card b{font-size:.93rem;line-height:1.25;}
+.contents-card small{font-size:.79rem;line-height:1.45;color:#477c67;}
+@media(max-width:900px){.contents-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.contents-card{min-height:108px;padding:12px}}
+@media(max-width:520px){.contents-grid{grid-template-columns:1fr}.contents-card{min-height:auto}}
