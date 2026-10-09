@@ -338,7 +338,7 @@
 <!-- 13. Responder -->
 <article class="slide plain" data-manual="" data-mood="neutral" hidden="">
 <span class="section-kicker">13 · Responder</span><h2 data-read="">Pon a prueba tu ojo</h2>
-<p class="lead" data-read="">Lee cada mensaje y decide si es phishing o es legítimo.</p>
+<p class="lead" data-read="">Analiza seis mensajes ficticios de correo, SMS y WhatsApp. Al finalizar, recibirás un diagnóstico orientativo y recomendaciones de repaso según tus respuestas.</p>
 <div id="qbox"></div>
 </article>
 <!-- 14. Evaluación -->
@@ -856,17 +856,17 @@ window.addEventListener('pagehide',()=>{try{synth&&synth.cancel()}catch(e){}});
 
 /* ---------- Práctica: ¿phishing o legítimo? ---------- */
 const Q=[
- {c:'SMS',f:'Número desconocido',t:'Tu banco: detectamos un cobro de $850.000 en tu tarjeta. Si no fuiste tú, cancélalo ya en bit.ly/anula-cobro',p:true,
+ {k:'Urgencia y enlaces',c:'SMS',f:'Número desconocido',t:'Tu banco: detectamos un cobro de $850.000 en tu tarjeta. Si no fuiste tú, cancélalo ya en bit.ly/anula-cobro',p:true,
   w:'Es phishing por SMS. Usa miedo, un enlace acortado que oculta el destino y pide actuar ya. Ante un aviso así, llama al número que aparece en tu tarjeta.'},
- {c:'Correo',f:'Andrés, coordinador del proyecto',t:'Laura, quedó lista el acta de la reunión del martes. La subí a la carpeta compartida del proyecto, la misma de siempre. Si algo no cuadra, me cuentas.',p:false,
+ {k:'Verificación contextual',c:'Correo',f:'Andrés, coordinador del proyecto',t:'Laura, quedó lista el acta de la reunión del martes. La subí a la carpeta compartida del proyecto, la misma de siempre. Si algo no cuadra, me cuentas.',p:false,
   w:'Es legítimo: viene de alguien que conoces, habla de algo que esperabas, no mete presión y no pide datos. Aun así, si algo te resulta raro, confirma con la persona por otro canal.'},
- {c:'WhatsApp',f:'Número nuevo con la foto de tu jefe',t:'Hola, soy yo, cambié de número. Estoy en una reunión y no puedo hablar. Necesito que compres 5 tarjetas de regalo ahora y me envíes los códigos por aquí. Es confidencial.',p:true,
+ {k:'Suplantación e ingeniería social',c:'WhatsApp',f:'Número nuevo con la foto de tu jefe',t:'Hola, soy yo, cambié de número. Estoy en una reunión y no puedo hablar. Necesito que compres 5 tarjetas de regalo ahora y me envíes los códigos por aquí. Es confidencial.',p:true,
   w:'Es una suplantación de jefe. Combina autoridad, urgencia y secreto, y pide un pago difícil de rastrear. Llama a tu jefe al número que ya tenías.'},
- {c:'Correo',f:'Mesa de ayuda <ayuda@ti-verificacion.example>',t:'Su contraseña vence en 1 hora. Para renovarla, escanee con su celular el código QR de este mensaje.',qr:true,p:true,
+ {k:'QR y enlaces ocultos',c:'Correo',f:'Mesa de ayuda <ayuda@ti-verificacion.example>',t:'Su contraseña vence en 1 hora. Para renovarla, escanee con su celular el código QR de este mensaje.',qr:true,p:true,
   w:'Es quishing: un QR no te deja ver a dónde lleva antes de escanearlo, y el plazo de una hora busca que no verifiques. Cambia tu contraseña entrando tú mismo al portal oficial.'},
- {c:'Correo',f:'Seguridad de la universidad',t:'Su cuenta será bloqueada hoy. Responda este mensaje con su contraseña y código de verificación para mantener el acceso.',p:true,
+ {k:'Credenciales y códigos',c:'Correo',f:'Seguridad de la universidad',t:'Su cuenta será bloqueada hoy. Responda este mensaje con su contraseña y código de verificación para mantener el acceso.',p:true,
   w:'Es phishing: solicita credenciales y un código de verificación mediante un mensaje urgente. Nunca compartas contraseñas ni códigos; entra directamente al portal oficial y verifica por un canal conocido.'},
- {c:'Aviso de acceso',f:'Servicio de correo',t:'Se inició sesión en tu cuenta desde un dispositivo nuevo. Si fuiste tú, no tienes que hacer nada. Si no, entra directamente a tu cuenta desde tu navegador y cambia la contraseña.',p:false,
+ {k:'Verificación segura',c:'Aviso de acceso',f:'Servicio de correo',t:'Se inició sesión en tu cuenta desde un dispositivo nuevo. Si fuiste tú, no tienes que hacer nada. Si no, entra directamente a tu cuenta desde tu navegador y cambia la contraseña.',p:false,
   w:'Es legítimo: no trae enlaces ni te pide datos, y te indica entrar tú mismo a tu cuenta. Si aun así dudas, entra por tu cuenta y revisa la actividad reciente, no por el mensaje.'}
 ];
 const RES=[[5,'Muy buen ojo. Recuerda: aunque un mensaje parezca real, verificar por otro canal siempre tiene la última palabra.'],[4,'Vas por buen camino. Repasa las tres señales que más se repiten: urgencia, enlace y remitente.'],[0,'No te preocupes: reconocer estos engaños se aprende. Vuelve a la diapositiva de las señales de alerta e inténtalo de nuevo.']];
@@ -886,20 +886,30 @@ function renderQ(){
   if(qi>=Q.length){
     const r=RES.find(m=>score>=m[0])[1];
     const pct=Math.round(score/Q.length*100);
+    const missed=Q.filter(q=>!q.userCorrect);
+    const weak=[...new Set(missed.map(q=>q.k))];
+    const advice={
+      'Urgencia y enlaces':'Repasa las señales de urgencia, amenazas y enlaces acortados (secciones 09 y 10).',
+      'Verificación contextual':'Practica la verificación por un canal conocido, incluso cuando el mensaje parece legítimo (secciones 09 y 12).',
+      'Suplantación e ingeniería social':'Repasa la suplantación de identidad, la autoridad y las solicitudes secretas (secciones 08 y 10).',
+      'QR y enlaces ocultos':'Repasa el quishing: no escanees QR inesperados y abre el portal oficial por tu cuenta (secciones 08 y 11).',
+      'Credenciales y códigos':'Recuerda que nunca debes compartir contraseñas ni códigos de verificación (secciones 11 y 12).',
+      'Verificación segura':'Refuerza cómo comprobar alertas de acceso sin usar enlaces del mensaje (secciones 11 y 12).'
+    };
+    const feedback=weak.length?weak.map(k=>`<li><strong>${esc(k)}:</strong> ${esc(advice[k]||'Vuelve a revisar las señales de alerta y la respuesta segura.')}</li>`).join(''):'<li>Buen resultado. Para mantener la competencia, practica con mensajes de distintos canales y verifica por vías independientes.</li>';
+    const badge=score===Q.length?'Insignia: Radar anti-phishing':score>=4?'Insignia: Detector atento':'Insignia: Aprendiz de ciberseguridad';
     qb.innerHTML=`<div class="mini-activity quiz-result-shell">
       <div class="res" data-read data-say="Obtuviste ${score} aciertos de ${Q.length}. ${r}">
-        <span class="complete-badge">✓ EVALUACIÓN COMPLETADA</span>
-        <h3>¡Buen trabajo!</h3>
+        <span class="complete-badge">✓ DIAGNÓSTICO COMPLETADO</span>
+        <h3>Tu perfil de prevención</h3>
+        <p class="diagnostic-badge">🏅 ${badge}</p>
         <div class="res-score">${score} / ${Q.length}</div>
         <div class="res-stats"><span>✓ Aciertos: <strong>${score}</strong></span><span>✕ Fallos: <strong>${Q.length-score}</strong></span></div>
         <p>${esc(r)}</p>
-        <div class="res-list">
-          <span>Reconocer señales de phishing</span><span>Detectar urgencia y presión</span>
-          <span>Verificar remitentes y enlaces</span><span>Tomar decisiones seguras</span>
-        </div>
-        <p><strong>${pct}% de aciertos</strong></p>
-        <p class="criterion-note"><strong>Criterio de logro:</strong> alcanzar al menos 80% de aciertos. Si el resultado es menor, repasa las secciones sugeridas y vuelve a intentarlo.</p>
-        <div class="result-actions"><button data-retry>↻ Intentar de nuevo</button><button class="secondary" data-finish>Ver cierre</button></div>
+        <div class="diagnostic-meter"><span>Resultado de la actividad</span><strong>${pct}%</strong><div class="diagnostic-track"><i style="width:${pct}%"></i></div></div>
+        <div class="diagnostic-feedback"><h4>${score>=5?'Competencia consolidada':score>=4?'Competencia en desarrollo':'Ruta de refuerzo recomendada'}</h4><p>${score>=5?'Identificas la mayoría de las señales y eliges respuestas prudentes. Sigue verificando antes de actuar.':score>=4?'Reconoces varias señales importantes. Refuerza los temas que aparecen abajo para ganar consistencia.':'Este resultado es un punto de partida, no una calificación definitiva. Revisa los temas sugeridos y vuelve a practicar.'}</p><ul>${feedback}</ul></div>
+        <p class="criterion-note"><strong>Criterio de logro sugerido:</strong> 80% o más. Este resultado orienta el repaso dentro de esta actividad; no constituye una certificación formal de competencias.</p>
+        <div class="result-actions"><button data-retry>↻ Volver a practicar</button><button class="secondary" data-finish>Ver conclusiones</button></div>
       </div>
     </div>`;
     setMood(score>=4?'happy':score>=2?'neutral':'alert');enhance();single(qb.querySelector('.res'));return;
@@ -923,12 +933,13 @@ qb.addEventListener('click',e=>{
   if(b.dataset.a!==undefined&&!answered){
     answered=true;
     const q=Q[qi],ok=(b.dataset.a==='1')===q.p;if(ok)score++;
+    q.userCorrect=ok;
     $$('.quiz-options button',qb).forEach(x=>x.disabled=true);
     b.classList.add(ok?'correct':'incorrect');
     setMood(ok?'happy':'alert');
     openQuizFeedback(ok,q.w,qi);
   }else if(b.hasAttribute('data-retry')){
-    stopAll();qi=0;score=0;setMood('neutral');renderQ();
+    stopAll();qi=0;score=0;Q.forEach(q=>delete q.userCorrect);setMood('neutral');renderQ();
   }else if(b.hasAttribute('data-finish')){
     stopAll();
     // El cierre lleva a la sección de Conclusiones (índice 16 = pantalla 17).
