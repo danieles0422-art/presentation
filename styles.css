@@ -1,7 +1,6 @@
 :root{--v:#004B2D;--g:#008A3E;--m:#DDE8B5;--o:#F4D03F;--sf:#123F2D;--sf2:#174C34;--ink:#F8F9E7;--ink2:#D8E5D9;--mut:#B8CDBA;--line:#35634B;--dk:#4E8062;--hl:#214D35;--hd:#F4D03F;--btn:#174C34;--btnt:#F8F9E7;--r:#b3341f;--rs:#fbeae5;--ok:#A7D129;--serif:"Newsreader",Georgia,serif;--sans:"Public Sans",Arial,sans-serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--sf:#123F2D;--sf2:#174C34;--ink:#F8F9E7;--ink2:#D8E5D9;--mut:#B8CDBA;--line:#35634B;--dk:#4E8062;--hl:#214D35;--hd:#F4D03F;--btn:#174C34;--btnt:#F8F9E7;--r:#ff9a82;--rs:#3b1f1a;--ok:#A7D129}}
 :root[data-theme="dark"]{--sf:#123F2D;--sf2:#174C34;--ink:#F8F9E7;--ink2:#D8E5D9;--mut:#B8CDBA;--line:#35634B;--dk:#4E8062;--hl:#214D35;--hd:#F4D03F;--btn:#174C34;--btnt:#F8F9E7;--r:#ff9a82;--rs:#3b1f1a;--ok:#A7D129}
-:root[data-theme="dark"]{--sf:#123F2D;--sf2:#174C34;--ink:#F8F9E7;--ink2:#D8E5D9;--mut:#B8CDBA;--line:#35634B;--dk:#4E8062;--hl:#214D35;--hd:#F4D03F;--btn:#174C34;--btnt:#F8F9E7;--r:#ff9a82;--rs:#3b1f1a;--ok:#A7D129}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box}
 body{margin:0;background:#0B3D2E;color:var(--ink);font:16px/1.5 var(--sans)}
@@ -1271,7 +1270,6 @@ body.info-open{overflow:hidden}
 /* =========================================================
    CRÉDITOS Y LICENCIA
    ========================================================= */
-@media(max-width:700px){.mini-activity-head{display:block}.mini-activity-head small{display:block;margin-top:4px}.mini-options button{flex-basis:100%}}
 
 
 /* =========================================================
@@ -1729,3 +1727,24 @@ body.info-open{overflow:hidden}
   overflow-wrap:anywhere;
 }
 .research-slide .references-template a:hover{color:#007b50}
+
+/* El texto de narración usa desplazamiento interno y no empuja el marco del avatar. */
+.agent > #say {
+  flex: 0 0 112px !important;
+  height: 112px !important;
+  min-height: 112px !important;
+  max-height: 112px !important;
+  box-sizing: border-box !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  overscroll-behavior: contain;
+}
+
+@media (max-width: 980px) {
+  .agent > #say {
+    flex-basis: 76px !important;
+    height: 76px !important;
+    min-height: 76px !important;
+    max-height: 76px !important;
+  }
+}
