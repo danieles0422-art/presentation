@@ -1748,3 +1748,32 @@ body.info-open{overflow:hidden}
     max-height: 76px !important;
   }
 }
+#play,
+#stop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  text-align: center;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+#play .side-icon,
+#stop .side-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  min-width: 14px;
+  margin: 0;
+  padding: 0;
+  flex: 0 0 14px;
+}
+
+#play .side-icon svg,
+#stop .side-icon svg {
+  display: block;
+  width: 14px;
+  height: 14px;
+}
