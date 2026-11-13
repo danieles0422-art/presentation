@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest identifier="ODC_PHISHING_UDEC" version="1.0"
+  xmlns="http://www.imsproject.org/xsd/imscp_rootv1p1p2"
+  xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_rootv1p2"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.imsproject.org/xsd/imscp_rootv1p1p2 imscp_rootv1p1p2.xsd http://www.adlnet.org/xsd/adlcp_rootv1p2 adlcp_rootv1p2.xsd">
+  <organizations default="ORG_ODC">
+    <organization identifier="ORG_ODC">
+      <title>Estrategias educativas para identificar y prevenir el phishing</title>
+      <item identifier="ITEM_ODC" identifierref="RES_ODC" isvisible="true">
+        <title>Objeto Digital de Conocimiento</title>
+      </item>
+    </organization>
+  </organizations>
+  <resources>
+    <resource identifier="RES_ODC" type="webcontent" adlcp:scormtype="sco" href="index.html">
+      <file href="index.html"/>
+      <file href="styles.css"/>
+    </resource>
+  </resources>
+</manifest>

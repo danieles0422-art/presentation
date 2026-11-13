@@ -5,9 +5,6 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
 <title>Estrategias educativas para identificar y prevenir el phishing</title>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,700&amp;family=Public+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="styles.css?v=20261017-layout" rel="stylesheet"/></head>
 <body>
 <header class="head">
@@ -859,6 +856,51 @@ function setAgent(on){
 $('min').onclick=()=>setAgent(false);
 $('open').onclick=()=>setAgent(true);
 setAgent(!matchMedia('(max-width:1099px)').matches);
+/* Integración SCORM 1.2: registra avance y finalización en Moodle cuando existe API. */
+(function () {
+  function findAPI(win) {
+    let attempts = 0;
+    while (win && attempts < 500) {
+      try { if (win.API) return win.API; } catch (_) {}
+      try { if (!win.parent || win.parent === win) break; win = win.parent; }
+      catch (_) { break; }
+      attempts++;
+    }
+    try { if (window.opener && window.opener.API) return window.opener.API; } catch (_) {}
+    return null;
+  }
+
+  const api = findAPI(window);
+  if (!api) return; // Permite abrir la presentación local fuera de Moodle.
+
+  let finished = false;
+  try {
+    if (api.LMSInitialize("") !== "true") return;
+    api.LMSSetValue("cmi.core.lesson_status", "incomplete");
+    api.LMSSetValue("cmi.core.lesson_location", "0");
+    api.LMSCommit("");
+  } catch (_) { return; }
+
+  const originalGo = go;
+  go = function (slideIndex) {
+    originalGo(slideIndex);
+    try {
+      api.LMSSetValue("cmi.core.lesson_location", String(slideIndex));
+      if (slideIndex === N - 1) {
+        api.LMSSetValue("cmi.core.lesson_status", "completed");
+      }
+      api.LMSCommit("");
+    } catch (_) {}
+  };
+
+  function finishSCORM() {
+    if (finished) return;
+    finished = true;
+    try { api.LMSCommit(""); api.LMSFinish(""); } catch (_) {}
+  }
+  window.addEventListener("pagehide", finishSCORM, { once: true });
+  window.addEventListener("beforeunload", finishSCORM, { once: true });
+})();
 // Mostrar solo la portada al cargar la presentación
 go(0);
 
